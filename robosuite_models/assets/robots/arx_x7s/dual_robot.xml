@@ -1,0 +1,582 @@
+<mujoco model="X7S">
+  <compiler angle="radian"/>
+  <asset>
+    <material name="black_metal" specular="0.5" shininess="0.09604875199999999"
+              rgba="0.030034 0.030034 0.030034 1.000000"/>
+    <material name="grey_metal" specular="0.5" shininess="0.09604875199999999"
+              rgba="0.081647 0.081647 0.081647 1.000000"/>
+    <material name="white_metal" specular="0.5" shininess="0.25" rgba="0.800000 0.800000 0.800000 1.000000"/>
+
+    <!-- right mount -->
+    <mesh file="meshes/right_mount/right_mount.obj" name="right_mount"/>
+    <mesh file="meshes/right_mount/right_mount_collision_0.obj" name="right_mount_collision_0"/>
+    <mesh file="meshes/right_mount/right_mount_collision_1.obj" name="right_mount_collision_1"/>
+    <mesh file="meshes/right_mount/right_mount_collision_2.obj" name="right_mount_collision_2"/>
+    <mesh file="meshes/right_mount/right_mount_collision_3.obj" name="right_mount_collision_3"/>
+    <mesh file="meshes/right_mount/right_mount_collision_4.obj" name="right_mount_collision_4"/>
+    <mesh file="meshes/right_mount/right_mount_collision_5.obj" name="right_mount_collision_5"/>
+    <mesh file="meshes/right_mount/right_mount_collision_6.obj" name="right_mount_collision_6"/>
+    <mesh file="meshes/right_mount/right_mount_collision_7.obj" name="right_mount_collision_7"/>
+    <mesh file="meshes/right_mount/right_mount_collision_8.obj" name="right_mount_collision_8"/>
+    <mesh file="meshes/right_mount/right_mount_collision_9.obj" name="right_mount_collision_9"/>
+
+    <!-- right shoulder -->
+    <mesh file="meshes/right_shoulder/right_shoulder_0.obj" name="right_shoulder_0"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_1.obj" name="right_shoulder_1"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_0.obj" name="right_shoulder_collision_0"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_1.obj" name="right_shoulder_collision_1"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_2.obj" name="right_shoulder_collision_2"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_3.obj" name="right_shoulder_collision_3"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_4.obj" name="right_shoulder_collision_4"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_5.obj" name="right_shoulder_collision_5"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_6.obj" name="right_shoulder_collision_6"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_7.obj" name="right_shoulder_collision_7"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_8.obj" name="right_shoulder_collision_8"/>
+    <mesh file="meshes/right_shoulder/right_shoulder_collision_9.obj" name="right_shoulder_collision_9"/>
+
+    <!-- right upper arm -->
+    <mesh file="meshes/right_upper_arm/right_upper_arm_0.obj" name="right_upper_arm_0"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_1.obj" name="right_upper_arm_1"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_0.obj" name="right_upper_arm_collision_0"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_1.obj" name="right_upper_arm_collision_1"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_2.obj" name="right_upper_arm_collision_2"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_3.obj" name="right_upper_arm_collision_3"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_4.obj" name="right_upper_arm_collision_4"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_5.obj" name="right_upper_arm_collision_5"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_6.obj" name="right_upper_arm_collision_6"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_7.obj" name="right_upper_arm_collision_7"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_8.obj" name="right_upper_arm_collision_8"/>
+    <mesh file="meshes/right_upper_arm/right_upper_arm_collision_9.obj" name="right_upper_arm_collision_9"/>
+
+    <!-- right elbow -->
+    <mesh file="meshes/right_elbow/right_elbow.obj" name="right_elbow"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_0.obj" name="right_elbow_collision_0"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_1.obj" name="right_elbow_collision_1"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_2.obj" name="right_elbow_collision_2"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_3.obj" name="right_elbow_collision_3"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_4.obj" name="right_elbow_collision_4"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_5.obj" name="right_elbow_collision_5"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_6.obj" name="right_elbow_collision_6"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_7.obj" name="right_elbow_collision_7"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_8.obj" name="right_elbow_collision_8"/>
+    <mesh file="meshes/right_elbow/right_elbow_collision_9.obj" name="right_elbow_collision_9"/>
+
+    <!-- right forearm -->
+    <mesh file="meshes/right_forearm/right_forearm.obj" name="right_forearm"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_0.obj" name="right_forearm_collision_0"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_1.obj" name="right_forearm_collision_1"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_2.obj" name="right_forearm_collision_2"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_3.obj" name="right_forearm_collision_3"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_4.obj" name="right_forearm_collision_4"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_5.obj" name="right_forearm_collision_5"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_6.obj" name="right_forearm_collision_6"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_7.obj" name="right_forearm_collision_7"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_8.obj" name="right_forearm_collision_8"/>
+    <mesh file="meshes/right_forearm/right_forearm_collision_9.obj" name="right_forearm_collision_9"/>
+
+    <!-- right wrist -->
+    <mesh file="meshes/right_wrist/right_wrist.obj" name="right_wrist"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_0.obj" name="right_wrist_collision_0"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_1.obj" name="right_wrist_collision_1"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_2.obj" name="right_wrist_collision_2"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_3.obj" name="right_wrist_collision_3"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_4.obj" name="right_wrist_collision_4"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_5.obj" name="right_wrist_collision_5"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_6.obj" name="right_wrist_collision_6"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_7.obj" name="right_wrist_collision_7"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_8.obj" name="right_wrist_collision_8"/>
+    <mesh file="meshes/right_wrist/right_wrist_collision_9.obj" name="right_wrist_collision_9"/>
+
+    <!-- left mount -->
+    <mesh file="meshes/left_mount/left_mount.obj" name="left_mount"/>
+    <mesh file="meshes/left_mount/left_mount_collision_0.obj" name="left_mount_collision_0"/>
+    <mesh file="meshes/left_mount/left_mount_collision_1.obj" name="left_mount_collision_1"/>
+    <mesh file="meshes/left_mount/left_mount_collision_2.obj" name="left_mount_collision_2"/>
+    <mesh file="meshes/left_mount/left_mount_collision_3.obj" name="left_mount_collision_3"/>
+    <mesh file="meshes/left_mount/left_mount_collision_4.obj" name="left_mount_collision_4"/>
+    <mesh file="meshes/left_mount/left_mount_collision_5.obj" name="left_mount_collision_5"/>
+    <mesh file="meshes/left_mount/left_mount_collision_6.obj" name="left_mount_collision_6"/>
+    <mesh file="meshes/left_mount/left_mount_collision_7.obj" name="left_mount_collision_7"/>
+    <mesh file="meshes/left_mount/left_mount_collision_8.obj" name="left_mount_collision_8"/>
+    <mesh file="meshes/left_mount/left_mount_collision_9.obj" name="left_mount_collision_9"/>
+
+    <!-- left shoulder -->
+    <mesh file="meshes/left_shoulder/left_shoulder_0.obj" name="left_shoulder_0"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_1.obj" name="left_shoulder_1"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_0.obj" name="left_shoulder_collision_0"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_1.obj" name="left_shoulder_collision_1"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_2.obj" name="left_shoulder_collision_2"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_3.obj" name="left_shoulder_collision_3"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_4.obj" name="left_shoulder_collision_4"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_5.obj" name="left_shoulder_collision_5"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_6.obj" name="left_shoulder_collision_6"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_7.obj" name="left_shoulder_collision_7"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_8.obj" name="left_shoulder_collision_8"/>
+    <mesh file="meshes/left_shoulder/left_shoulder_collision_9.obj" name="left_shoulder_collision_9"/>
+
+    <!-- left upper arm -->
+    <mesh file="meshes/left_upper_arm/left_upper_arm_0.obj" name="left_upper_arm_0"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_1.obj" name="left_upper_arm_1"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_0.obj" name="left_upper_arm_collision_0"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_1.obj" name="left_upper_arm_collision_1"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_2.obj" name="left_upper_arm_collision_2"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_3.obj" name="left_upper_arm_collision_3"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_4.obj" name="left_upper_arm_collision_4"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_5.obj" name="left_upper_arm_collision_5"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_6.obj" name="left_upper_arm_collision_6"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_7.obj" name="left_upper_arm_collision_7"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_8.obj" name="left_upper_arm_collision_8"/>
+    <mesh file="meshes/left_upper_arm/left_upper_arm_collision_9.obj" name="left_upper_arm_collision_9"/>
+
+    <!-- left elbow -->
+    <mesh file="meshes/left_elbow/left_elbow.obj" name="left_elbow"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_0.obj" name="left_elbow_collision_0"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_1.obj" name="left_elbow_collision_1"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_2.obj" name="left_elbow_collision_2"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_3.obj" name="left_elbow_collision_3"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_4.obj" name="left_elbow_collision_4"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_5.obj" name="left_elbow_collision_5"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_6.obj" name="left_elbow_collision_6"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_7.obj" name="left_elbow_collision_7"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_8.obj" name="left_elbow_collision_8"/>
+    <mesh file="meshes/left_elbow/left_elbow_collision_9.obj" name="left_elbow_collision_9"/>
+
+    <!-- left forearm -->
+    <mesh file="meshes/left_forearm/left_forearm.obj" name="left_forearm"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_0.obj" name="left_forearm_collision_0"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_1.obj" name="left_forearm_collision_1"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_2.obj" name="left_forearm_collision_2"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_3.obj" name="left_forearm_collision_3"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_4.obj" name="left_forearm_collision_4"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_5.obj" name="left_forearm_collision_5"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_6.obj" name="left_forearm_collision_6"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_7.obj" name="left_forearm_collision_7"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_8.obj" name="left_forearm_collision_8"/>
+    <mesh file="meshes/left_forearm/left_forearm_collision_9.obj" name="left_forearm_collision_9"/>
+
+    <!-- left wrist -->
+    <mesh file="meshes/left_wrist/left_wrist.obj" name="left_wrist"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_0.obj" name="left_wrist_collision_0"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_1.obj" name="left_wrist_collision_1"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_2.obj" name="left_wrist_collision_2"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_3.obj" name="left_wrist_collision_3"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_4.obj" name="left_wrist_collision_4"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_5.obj" name="left_wrist_collision_5"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_6.obj" name="left_wrist_collision_6"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_7.obj" name="left_wrist_collision_7"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_8.obj" name="left_wrist_collision_8"/>
+    <mesh file="meshes/left_wrist/left_wrist_collision_9.obj" name="left_wrist_collision_9"/>
+  </asset>
+
+  <default>
+    <default class="visual">
+      <geom group="1" type="mesh" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision">
+      <geom group="0" type="mesh"/>
+    </default>
+    <default class="arx">
+      <joint damping="0.1" frictionloss="0.001" actuatorfrcrange="-100 100" limited="true"/>
+    </default>
+  </default>
+
+  <actuator>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="right_shoulder_pitch" name="torq_right_shoulder_pitch"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="right_shoulder_roll" name="torq_right_shoulder_roll"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="right_arm_yaw" name="torq_right_arm_yaw"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="right_elbow_pitch" name="torq_right_elbow_pitch"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="right_elbow_roll" name="torq_right_elbow_roll"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="right_wrist_pitch" name="torq_right_wrist_pitch"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="right_wrist_yaw" name="torq_right_wrist_yaw"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="left_shoulder_pitch" name="torq_left_shoulder_pitch"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="left_shoulder_roll" name="torq_left_shoulder_roll"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="left_arm_yaw" name="torq_left_arm_yaw"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="left_elbow_pitch" name="torq_left_elbow_pitch"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="left_elbow_roll" name="torq_left_elbow_roll"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="left_wrist_pitch" name="torq_left_wrist_pitch"/>
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" joint="left_wrist_yaw" name="torq_left_wrist_yaw"/>
+  </actuator>
+
+  <worldbody>
+    <body name="base">
+      <site name="center" pos="0 0 0" size="0.01" rgba="1 0.3 0.3 1" group="2"/>
+      <camera mode="fixed" name="robotview" pos="1.0 0 0.4" quat="0.653 0.271 0.271 0.653"/>
+      <body name="base_link">
+        <body name="right_mount" pos="0 -0.088 0">
+          <site name="right_center" pos="0 0 0" size="0.01" rgba="1 0.3 0.3 1" group="2"/>
+          <inertial pos="0.0203119 -0.0282075 -0.000172804" quat="0.674894 0.674894 -0.210994 -0.210994"
+                    mass="0.131892"
+                    diaginertia="0.00014772 0.00014 6.228e-05"/>
+          <joint name="right_shoulder_pitch" pos="0 0 0" axis="0 -1 0" range="-0.523599 3.14159"
+                 class="arx"/>
+          <geom material="black_metal" mesh="right_mount" class="visual"/>
+          <geom mesh="right_mount_collision_0" rgba="0.262720935872679 0.012063082895204413 0.4663451294867589 1"
+                class="collision"/>
+          <geom mesh="right_mount_collision_1" rgba="0.492434750560633 0.19903102638476144 0.162511665732463 1"
+                class="collision"/>
+          <geom mesh="right_mount_collision_2" rgba="0.6614417578078188 0.9134762252916104 0.8125970439452319 1"
+                class="collision"/>
+          <geom mesh="right_mount_collision_3" rgba="0.12267593047703096 0.5501438352003574 0.2280875320946294 1"
+                class="collision"/>
+          <geom mesh="right_mount_collision_4" rgba="0.38678998845488244 0.5955900845269215 0.43869844950695147 1"
+                class="collision"/>
+          <geom mesh="right_mount_collision_5" rgba="0.6582753465822013 0.0033993742525659787 0.10499929448559175 1"
+                class="collision"/>
+          <geom mesh="right_mount_collision_6" rgba="0.5996091288702274 0.8916712282916087 0.5194291747940137 1"
+                class="collision"/>
+          <geom mesh="right_mount_collision_7" rgba="0.15664783170264862 0.040378527460355196 0.5578770215529165 1"
+                class="collision"/>
+          <geom mesh="right_mount_collision_8" rgba="0.3134886082749009 0.3236460136242282 0.9756447225028299 1"
+                class="collision"/>
+          <geom mesh="right_mount_collision_9" rgba="0.8144577746808173 0.6690553752663582 0.30968662729927376 1"
+                class="collision"/>
+          <body name="right_shoulder" pos="0.02725 -0.063 0">
+            <inertial pos="-0.0244519 -0.00440118 -0.0251861" quat="0.939496 -0.0137573 -0.0501379 -0.338591"
+                      mass="1.03162" diaginertia="0.00170434 0.00163464 0.000871019"/>
+            <joint name="right_shoulder_roll" pos="0 0 0" axis="-1 0 0" range="-0.436332 1.5708"
+                   class="arx"/>
+            <geom mesh="right_shoulder_0" material="white_metal" class="visual"/>
+            <geom mesh="right_shoulder_1" material="black_metal" class="visual"/>
+            <geom mesh="right_shoulder_collision_0"
+                  rgba="0.2784134403512799 0.5631576847239421 0.8821398521728503 1"
+                  class="collision"/>
+            <geom mesh="right_shoulder_collision_1"
+                  rgba="0.5163371240584653 0.3135210858810439 0.7057704762286194 1"
+                  class="collision"/>
+            <geom mesh="right_shoulder_collision_2"
+                  rgba="0.7030014339221464 0.07949169546925061 0.36875302625240547 1" class="collision"/>
+            <geom mesh="right_shoulder_collision_3"
+                  rgba="0.06778314946786324 0.7683661815804902 0.016459076976493292 1" class="collision"/>
+            <geom mesh="right_shoulder_collision_4" rgba="0.22443255401391038 0.760366232000956 0.715794360464259 1"
+                  class="collision"/>
+            <geom mesh="right_shoulder_collision_5" rgba="0.206854082545601 0.8752218503336124 0.338091738329623 1"
+                  class="collision"/>
+            <geom mesh="right_shoulder_collision_6" rgba="0.7090561168902705 0.685498953337557 0.367455468883618 1"
+                  class="collision"/>
+            <geom mesh="right_shoulder_collision_7"
+                  rgba="0.22248518736140377 0.15533921170371023 0.028761144510699665 1" class="collision"/>
+            <geom mesh="right_shoulder_collision_8"
+                  rgba="0.9752644954467838 0.5808765514896721 0.5516221191123267 1"
+                  class="collision"/>
+            <geom mesh="right_shoulder_collision_9"
+                  rgba="0.11406995124401653 0.31017125562063874 0.025389620061706086 1" class="collision"/>
+            <body name="right_upper_arm" pos="-0.02725 0 -0.0865">
+              <inertial pos="0.00082778 0.00148435 -0.105295" quat="0.59284 -0.0282848 -0.0062907 0.804799"
+                        mass="0.736099" diaginertia="0.0023016 0.00229412 0.000594285"/>
+              <joint name="right_arm_yaw" pos="0 0 0" axis="0 0 1" range="-1.5708 1.5708"
+                     class="arx"/>
+              <geom mesh="right_upper_arm_0" material="white_metal" class="visual"/>
+              <geom mesh="right_upper_arm_1" material="black_metal" class="visual"/>
+              <geom mesh="right_upper_arm_collision_0"
+                    rgba="0.6115866794548741 0.11998037089674751 0.48798523679804917 1" class="collision"/>
+              <geom mesh="right_upper_arm_collision_1"
+                    rgba="0.11552681093043282 0.23268724893389336 0.3987822135791068 1" class="collision"/>
+              <geom mesh="right_upper_arm_collision_2"
+                    rgba="0.9025141096428916 0.9233526526960997 0.9043271012359602 1" class="collision"/>
+              <geom mesh="right_upper_arm_collision_3"
+                    rgba="0.6260426057257888 0.7978358850413425 0.08076645690493145 1" class="collision"/>
+              <geom mesh="right_upper_arm_collision_4"
+                    rgba="0.9536078909756606 0.6071816530852038 0.24388949478267097 1" class="collision"/>
+              <geom mesh="right_upper_arm_collision_5"
+                    rgba="0.9780319984457895 0.9102704651204152 0.36701155696428855 1" class="collision"/>
+              <geom mesh="right_upper_arm_collision_6"
+                    rgba="0.2735743688442387 0.09215653329972784 0.8664874805671164 1" class="collision"/>
+              <geom mesh="right_upper_arm_collision_7"
+                    rgba="0.03502957915680682 0.5983450981847556 0.8007375965925347 1" class="collision"/>
+              <geom mesh="right_upper_arm_collision_8"
+                    rgba="0.6159977167925789 0.5472982323114849 0.442733269749205 1" class="collision"/>
+              <geom mesh="right_upper_arm_collision_9"
+                    rgba="0.8985829583599819 0.9966495128873426 0.46267258652037446 1" class="collision"/>
+              <body name="right_elbow" pos="0 0.02725 -0.1435">
+                <inertial pos="0.0593724 -0.0253233 -0.0127287" quat="-0.00796675 0.620313 0.0947329 0.778571"
+                          mass="0.487507" diaginertia="0.00070775 0.000552568 0.000379682"/>
+                <joint name="right_elbow_pitch" pos="0 0 0" axis="0 1 0" range="-0.785398 1.5708"
+                       class="arx"/>
+                <geom material="black_metal" mesh="right_elbow" class="visual"/>
+                <geom mesh="right_elbow_collision_0"
+                      rgba="0.21889519903238874 0.27617113571542606 0.8793397094812686 1" class="collision"/>
+                <geom mesh="right_elbow_collision_1"
+                      rgba="0.13818582999622808 0.7898952117699828 0.4103829406005549 1" class="collision"/>
+                <geom mesh="right_elbow_collision_2"
+                      rgba="0.10651534553387632 0.538290547999415 0.12537286426324745 1" class="collision"/>
+                <geom mesh="right_elbow_collision_3"
+                      rgba="0.22336566906307154 0.7087686363565929 0.701580848212549 1"
+                      class="collision"/>
+                <geom mesh="right_elbow_collision_4"
+                      rgba="0.9224293903917666 0.14784009893778338 0.06622921351209199 1" class="collision"/>
+                <geom mesh="right_elbow_collision_5"
+                      rgba="0.3860183310182047 0.5539714509167125 0.19839803622161178 1" class="collision"/>
+                <geom mesh="right_elbow_collision_6"
+                      rgba="0.353952472376485 0.2063160520980245 0.7470855287528967 1"
+                      class="collision"/>
+                <geom mesh="right_elbow_collision_7"
+                      rgba="0.12753160289544185 0.9577398035358277 0.017157536297026876 1" class="collision"/>
+                <geom mesh="right_elbow_collision_8"
+                      rgba="0.1891634298165782 0.6416074949507324 0.18596851354049226 1" class="collision"/>
+                <geom mesh="right_elbow_collision_9"
+                      rgba="0.19822882968283728 0.772982299371394 0.3535440767341844 1"
+                      class="collision"/>
+                <body name="right_forearm" pos="0.0945 -0.02725 -0.015">
+                  <inertial pos="0.045897 0.000535553 -2.35789e-05" quat="0 0.707107 0 0.707107" mass="0.487432"
+                            diaginertia="0.00029 0.00027 0.00024"/>
+                  <joint name="right_elbow_roll" pos="0 0 0" axis="1 0 0" range="-2.79253 2.79253"
+                         class="arx"/>
+                  <geom material="black_metal" mesh="right_forearm" class="visual"/>
+                  <geom mesh="right_forearm_collision_0"
+                        rgba="0.6804117546449352 0.9914026883687906 0.9019126159712375 1" class="collision"/>
+                  <geom mesh="right_forearm_collision_1"
+                        rgba="0.6119763754366537 0.8680707296540202 0.3024323388653911 1" class="collision"/>
+                  <geom mesh="right_forearm_collision_2"
+                        rgba="0.6288078332571473 0.1423560009775814 0.18717404807134308 1" class="collision"/>
+                  <geom mesh="right_forearm_collision_3"
+                        rgba="0.3039237195537132 0.08465006791973317 0.45335482807681626 1" class="collision"/>
+                  <geom mesh="right_forearm_collision_4"
+                        rgba="0.4321258885916036 0.33657042621931377 0.7351541181391223 1" class="collision"/>
+                  <geom mesh="right_forearm_collision_5"
+                        rgba="0.4775960798591282 0.7201979367034279 0.777843823980941 1" class="collision"/>
+                  <geom mesh="right_forearm_collision_6"
+                        rgba="0.2336627077692448 0.8581468810359255 0.37525531026476333 1" class="collision"/>
+                  <geom mesh="right_forearm_collision_7"
+                        rgba="0.2812677799014889 0.7025376178700639 0.5778387277075171 1" class="collision"/>
+                  <geom mesh="right_forearm_collision_8"
+                        rgba="0.34254595965655044 0.019342911359408133 0.018603776657424298 1" class="collision"/>
+                  <geom mesh="right_forearm_collision_9"
+                        rgba="0.5645014306433762 0.5709174493758469 0.6905003100326337 1" class="collision"/>
+                  <body name="right_wrist" pos="0.05 0.02725 0">
+                    <inertial pos="0.0575036 -0.0265307 0.00135892" quat="-0.0626958 0.658169 0.0940555 0.744336"
+                              mass="0.432944" diaginertia="0.000412537 0.000334457 0.000243007"/>
+                    <joint name="right_wrist_pitch" pos="0 0 0" axis="0 -1 0" range="-0.785398 1.5708"
+                           class="arx"/>
+                    <geom material="grey_metal" mesh="right_wrist" class="visual"/>
+                    <geom mesh="right_wrist_collision_0"
+                          rgba="0.28457080100114407 0.5194618250825882 0.41066741777923754 1" class="collision"/>
+                    <geom mesh="right_wrist_collision_1"
+                          rgba="0.7648429773021065 0.5141846773523898 0.8703770505915825 1" class="collision"/>
+                    <geom mesh="right_wrist_collision_2"
+                          rgba="0.6085585095225811 0.8913036812966086 0.8763701762739229 1" class="collision"/>
+                    <geom mesh="right_wrist_collision_3"
+                          rgba="0.44112492991633545 0.729954646833143 0.8168214443622189 1" class="collision"/>
+                    <geom mesh="right_wrist_collision_4"
+                          rgba="0.8112007002353566 0.9900793464158731 0.3622605696608381 1" class="collision"/>
+                    <geom mesh="right_wrist_collision_5"
+                          rgba="0.045944664247150935 0.1583522959768504 0.9082324676932673 1" class="collision"/>
+                    <geom mesh="right_wrist_collision_6"
+                          rgba="0.6506424567392978 0.14112335312509905 0.6422945294832539 1" class="collision"/>
+                    <geom mesh="right_wrist_collision_7"
+                          rgba="0.2717258872622531 0.26725446719623214 0.6849204559383223 1" class="collision"/>
+                    <geom mesh="right_wrist_collision_8"
+                          rgba="0.7906872647254785 0.9716633688154459 0.03990721762766947 1" class="collision"/>
+                    <geom mesh="right_wrist_collision_9"
+                          rgba="0.027724715483930518 0.008294071011046733 0.5699801466510882 1" class="collision"/>
+                    <body name="right_gripper_base" pos="0.066 -0.02725 -0.022">
+                      <inertial pos="0.0782375 2.27689e-05 0.0203908" quat="0 0.784141 0 0.620583" mass="0.471848"
+                                diaginertia="0.000654164 0.00043 0.000385836"/>
+                      <joint name="right_wrist_yaw" pos="0 0 0" axis="0 0 1" range="-1.5708 1.5708"
+                             class="arx"/>
+                      <body name="right_hand" pos="0.0 0.0 0.0" quat="0 0.7071 0 0.7071">
+                        <camera mode="fixed" name="right_eye_in_hand" pos="0.06 0 0.05" quat="0 0.707108 0.707108 0"
+                                fovy="75"/>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+        <body name="left_mount" pos="0 0.088 0">
+          <site name="left_center" pos="0 0 0" size="0.01" rgba="1 0.3 0.3 1" group="2"/>
+          <inertial pos="0.0203119 0.0282075 -0.000172804" quat="0.674894 0.674894 0.210994 0.210994"
+                    mass="0.131892"
+                    diaginertia="0.00014772 0.00014 6.228e-05"/>
+          <joint name="left_shoulder_pitch" pos="0 0 0" axis="0 -1 0" range="-0.523599 3.14159"
+                 class="arx"/>
+          <geom material="black_metal" mesh="left_mount" class="visual"/>
+          <geom mesh="left_mount_collision_0" rgba="0.365920515299593 0.11621883536801869 0.7137907470017724 1"
+                class="collision"/>
+          <geom mesh="left_mount_collision_1" rgba="0.9208425785928729 0.030906704275102004 0.029616260632605362 1"
+                class="collision"/>
+          <geom mesh="left_mount_collision_2" rgba="0.10238803882612846 0.007974018307671416 0.6937784111496017 1"
+                class="collision"/>
+          <geom mesh="left_mount_collision_3" rgba="0.82317965807992 0.9655312459918831 0.33221256987839376 1"
+                class="collision"/>
+          <geom mesh="left_mount_collision_4" rgba="0.937954513117683 0.5056228157429549 0.4667601788693627 1"
+                class="collision"/>
+          <geom mesh="left_mount_collision_5" rgba="0.7641451700574636 0.9729724049978598 0.32721749143319745 1"
+                class="collision"/>
+          <geom mesh="left_mount_collision_6" rgba="0.5694708893512188 0.3919767860829315 0.8058881288150399 1"
+                class="collision"/>
+          <geom mesh="left_mount_collision_7" rgba="0.5500761406142374 0.8264936841798706 0.708253122585629 1"
+                class="collision"/>
+          <geom mesh="left_mount_collision_8" rgba="0.8869343783554531 0.8790844292358346 0.6471570175310907 1"
+                class="collision"/>
+          <geom mesh="left_mount_collision_9" rgba="0.15279300340713875 0.7740041289392965 0.7478885517018197 1"
+                class="collision"/>
+          <body name="left_shoulder" pos="0.02725 0.063 0">
+            <inertial pos="-0.0244519 0.0044012 -0.0251862" quat="0.939496 0.0137573 -0.0501379 0.338591"
+                      mass="1.03162"
+                      diaginertia="0.00170434 0.00163464 0.000871019"/>
+            <joint name="left_shoulder_roll" pos="0 0 0" axis="1 0 0" range="-0.436332 1.5708"
+                   class="arx"/>
+            <geom mesh="left_shoulder_0" material="white_metal" class="visual"/>
+            <geom mesh="left_shoulder_1" material="black_metal" class="visual"/>
+            <geom mesh="left_shoulder_collision_0"
+                  rgba="0.08091880274704544 0.42690448893886557 0.38888192544064537 1" class="collision"/>
+            <geom mesh="left_shoulder_collision_1"
+                  rgba="0.43536264080873455 0.49358629599938464 0.5396045573282393 1"
+                  class="collision"/>
+            <geom mesh="left_shoulder_collision_2"
+                  rgba="0.7487142692398848 0.6341630746842899 0.46572884597578046 1"
+                  class="collision"/>
+            <geom mesh="left_shoulder_collision_3"
+                  rgba="0.22314615725947162 0.5930341966438168 0.7662711292105842 1"
+                  class="collision"/>
+            <geom mesh="left_shoulder_collision_4" rgba="0.8973768980066521 0.602376835842606 0.6904202815283469 1"
+                  class="collision"/>
+            <geom mesh="left_shoulder_collision_5"
+                  rgba="0.08945863734856951 0.05753517247933382 0.8088200495978068 1"
+                  class="collision"/>
+            <geom mesh="left_shoulder_collision_6" rgba="0.9316430759058849 0.5420790217736383 0.9684025073267603 1"
+                  class="collision"/>
+            <geom mesh="left_shoulder_collision_7"
+                  rgba="0.9095044919368946 0.33124899572623645 0.34238214898107766 1"
+                  class="collision"/>
+            <geom mesh="left_shoulder_collision_8" rgba="0.5712062140908348 0.3441815007236583 0.6725500244524342 1"
+                  class="collision"/>
+            <geom mesh="left_shoulder_collision_9" rgba="0.9093969501109221 0.9036600903879426 0.500704500873483 1"
+                  class="collision"/>
+            <body name="left_upper_arm" pos="-0.02725 0 -0.0865">
+              <inertial pos="0.000827778 -0.00148365 -0.105295" quat="0.804799 -0.0062907 -0.0282848 0.59284"
+                        mass="0.736099" diaginertia="0.0023016 0.00229412 0.000594285"/>
+              <joint name="left_arm_yaw" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708"
+                     class="arx"/>
+              <geom mesh="left_upper_arm_0" material="black_metal" class="visual"/>
+              <geom mesh="left_upper_arm_1" material="white_metal" class="visual"/>
+              <geom mesh="left_upper_arm_collision_0"
+                    rgba="0.6654570926862291 0.07246306358149845 0.22453275900662673 1" class="collision"/>
+              <geom mesh="left_upper_arm_collision_1"
+                    rgba="0.5822970000187189 0.5579776212612733 0.2932958891227412 1" class="collision"/>
+              <geom mesh="left_upper_arm_collision_2"
+                    rgba="0.06570608979517178 0.2300505852608099 0.36343569224355154 1" class="collision"/>
+              <geom mesh="left_upper_arm_collision_3"
+                    rgba="0.6515994725327405 0.04566310594268819 0.8654672310469492 1" class="collision"/>
+              <geom mesh="left_upper_arm_collision_4"
+                    rgba="0.6991030053824185 0.05064408230370032 0.282582838409277 1" class="collision"/>
+              <geom mesh="left_upper_arm_collision_5"
+                    rgba="0.7867965237442185 0.9175248295638235 0.50572374650521 1"
+                    class="collision"/>
+              <geom mesh="left_upper_arm_collision_6"
+                    rgba="0.5997166451329634 0.024835870969879492 0.520064756744156 1" class="collision"/>
+              <geom mesh="left_upper_arm_collision_7"
+                    rgba="0.9386961025037617 0.4836504763911247 0.629742106758806 1"
+                    class="collision"/>
+              <geom mesh="left_upper_arm_collision_8"
+                    rgba="0.45935324517371146 0.598389442762945 0.025717736078026632 1" class="collision"/>
+              <geom mesh="left_upper_arm_collision_9"
+                    rgba="0.8377495451294529 0.5311869965377515 0.36229723802519576 1" class="collision"/>
+              <body name="left_elbow" pos="0 -0.02725 -0.1435">
+                <inertial pos="0.0593724 0.0253236 -0.012597" quat="0.00796675 0.620313 -0.0947329 0.778571"
+                          mass="0.487507" diaginertia="0.00070775 0.000552568 0.000379682"/>
+                <joint name="left_elbow_pitch" pos="0 0 0" axis="0 1 0" range="-0.785398 1.5708"
+                       class="arx"/>
+                <geom material="black_metal" mesh="left_elbow" class="visual"/>
+                <geom mesh="left_elbow_collision_0"
+                      rgba="0.4254829678593006 0.7490363576976541 0.04496633136486439 1"
+                      class="collision"/>
+                <geom mesh="left_elbow_collision_1"
+                      rgba="0.1884369763081486 0.6317129409282993 0.9027788976344936 1"
+                      class="collision"/>
+                <geom mesh="left_elbow_collision_2"
+                      rgba="0.4963905568818243 0.8832883237495895 0.14594515913482853 1"
+                      class="collision"/>
+                <geom mesh="left_elbow_collision_3"
+                      rgba="0.10406666437613654 0.12143708644314599 0.35101052358654405 1" class="collision"/>
+                <geom mesh="left_elbow_collision_4"
+                      rgba="0.27203993947843785 0.6684721206389063 0.7462367639724639 1"
+                      class="collision"/>
+                <geom mesh="left_elbow_collision_5"
+                      rgba="0.15851645198379194 0.6243807337600958 0.39798985650770125 1" class="collision"/>
+                <geom mesh="left_elbow_collision_6"
+                      rgba="0.7126452042180814 0.6698808439898883 0.06462776193894437 1"
+                      class="collision"/>
+                <geom mesh="left_elbow_collision_7"
+                      rgba="0.3103158305055398 0.8828346545604064 0.34900106261466235 1"
+                      class="collision"/>
+                <geom mesh="left_elbow_collision_8"
+                      rgba="0.2531058748514051 0.4275207080188431 0.5648829058525094 1"
+                      class="collision"/>
+                <geom mesh="left_elbow_collision_9"
+                      rgba="0.9655050253566209 0.491286500416264 0.28625109714868147 1"
+                      class="collision"/>
+                <body name="left_forearm" pos="0.0945 0.02725 -0.015">
+                  <inertial pos="0.0458969 -0.000535553 -9.66306e-05" quat="0 0.707107 0 0.707107" mass="0.487432"
+                            diaginertia="0.00029 0.00027 0.00024"/>
+                  <joint name="left_elbow_roll" pos="0 0 0" axis="1 0 0" range="-2.79253 2.79253"
+                         class="arx"/>
+                  <geom material="black_metal" mesh="left_forearm" class="visual"/>
+                  <geom mesh="left_forearm_collision_0"
+                        rgba="0.6804117546449352 0.9914026883687906 0.9019126159712375 1" class="collision"/>
+                  <geom mesh="left_forearm_collision_1"
+                        rgba="0.6119763754366537 0.8680707296540202 0.3024323388653911 1" class="collision"/>
+                  <geom mesh="left_forearm_collision_2"
+                        rgba="0.6288078332571473 0.1423560009775814 0.18717404807134308 1" class="collision"/>
+                  <geom mesh="left_forearm_collision_3"
+                        rgba="0.3039237195537132 0.08465006791973317 0.45335482807681626 1" class="collision"/>
+                  <geom mesh="left_forearm_collision_4"
+                        rgba="0.4321258885916036 0.33657042621931377 0.7351541181391223 1" class="collision"/>
+                  <geom mesh="left_forearm_collision_5"
+                        rgba="0.4775960798591282 0.7201979367034279 0.777843823980941 1" class="collision"/>
+                  <geom mesh="left_forearm_collision_6"
+                        rgba="0.2336627077692448 0.8581468810359255 0.37525531026476333 1" class="collision"/>
+                  <geom mesh="left_forearm_collision_7"
+                        rgba="0.2812677799014889 0.7025376178700639 0.5778387277075171 1" class="collision"/>
+                  <geom mesh="left_forearm_collision_8"
+                        rgba="0.34254595965655044 0.019342911359408133 0.018603776657424298 1" class="collision"/>
+                  <geom mesh="left_forearm_collision_9"
+                        rgba="0.5645014306433762 0.5709174493758469 0.6905003100326337 1" class="collision"/>
+                  <body name="left_wrist" pos="0.05 -0.02725 0">
+                    <inertial pos="0.0575036 0.0264951 0.00135889" quat="0.0626958 0.658169 -0.0940555 0.744336"
+                              mass="0.432944" diaginertia="0.000412537 0.000334457 0.000243007"/>
+                    <joint name="left_wrist_pitch" pos="0 0 0" axis="0 -1 0" range="-0.785398 1.5708"
+                           class="arx"/>
+                    <geom material="grey_metal" mesh="left_wrist" class="visual"/>
+                    <geom mesh="left_wrist_collision_0"
+                          rgba="0.7200334175689324 0.2312511228336539 0.10745471410726304 1" class="collision"/>
+                    <geom mesh="left_wrist_collision_1"
+                          rgba="0.6692273255412081 0.7891650609321533 0.6055098915628587 1" class="collision"/>
+                    <geom mesh="left_wrist_collision_2"
+                          rgba="0.9669097146726705 0.10928203878085074 0.7851453200995114 1" class="collision"/>
+                    <geom mesh="left_wrist_collision_3"
+                          rgba="0.10069137172279141 0.045276850187063844 0.8454335535780333 1" class="collision"/>
+                    <geom mesh="left_wrist_collision_4"
+                          rgba="0.1910195242524081 0.24043217190865285 0.07561922775112373 1" class="collision"/>
+                    <geom mesh="left_wrist_collision_5"
+                          rgba="0.41990499218037125 0.06644207154757031 0.37409711173462534 1" class="collision"/>
+                    <geom mesh="left_wrist_collision_6"
+                          rgba="0.3757237184439838 0.5097575568455491 0.06810463370097586 1" class="collision"/>
+                    <geom mesh="left_wrist_collision_7"
+                          rgba="0.490937645343553 0.2954843795434501 0.6884597153752136 1" class="collision"/>
+                    <geom mesh="left_wrist_collision_8"
+                          rgba="0.47857365879429137 0.4465840817228811 0.4964050774346296 1" class="collision"/>
+                    <geom mesh="left_wrist_collision_9"
+                          rgba="0.35181831118711593 0.46517070233324065 0.09404198546518905 1" class="collision"/>
+                    <body name="left_gripper_base" pos="0.066 0.02725 -0.022">
+                      <inertial pos="0.0782375 2.27689e-05 0.0203908" quat="0 0.784141 0 0.620583" mass="0.471848"
+                                diaginertia="0.000654164 0.00043 0.000385836"/>
+                      <joint name="left_wrist_yaw" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708"
+                             class="arx"/>
+                      <body name="left_hand" pos="0.0 0.0 0.0" quat="0 0.7071 0 0.7071">
+                        <camera mode="fixed" name="left_eye_in_hand" pos="0.06 0 0.05" quat="0 0.707108 0.707108 0"
+                                fovy="75"/>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

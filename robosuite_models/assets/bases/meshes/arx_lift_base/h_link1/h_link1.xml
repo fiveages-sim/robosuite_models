@@ -1,0 +1,39 @@
+<mujoco model="h_link1">
+  <default>
+    <default class="visual">
+      <geom group="2" type="mesh" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision">
+      <geom group="3" type="mesh"/>
+    </default>
+  </default>
+  <asset>
+    <material name="black_metal.002" specular="0.5" shininess="0.09604875199999999" rgba="0.030034 0.030034 0.030034 1.000000"/>
+    <mesh file="h_link1.obj"/>
+    <mesh file="h_link1_collision_0.obj"/>
+    <mesh file="h_link1_collision_1.obj"/>
+    <mesh file="h_link1_collision_2.obj"/>
+    <mesh file="h_link1_collision_3.obj"/>
+    <mesh file="h_link1_collision_4.obj"/>
+    <mesh file="h_link1_collision_5.obj"/>
+    <mesh file="h_link1_collision_6.obj"/>
+    <mesh file="h_link1_collision_7.obj"/>
+    <mesh file="h_link1_collision_8.obj"/>
+    <mesh file="h_link1_collision_9.obj"/>
+  </asset>
+  <worldbody>
+    <body name="h_link1">
+      <geom material="black_metal.002" mesh="h_link1" class="visual"/>
+      <geom mesh="h_link1_collision_0" rgba="0.020699575818336813 0.3030017048214675 0.4730461829092708 1" class="collision"/>
+      <geom mesh="h_link1_collision_1" rgba="0.6889000563696042 0.20732999703904653 0.029757235504406454 1" class="collision"/>
+      <geom mesh="h_link1_collision_2" rgba="0.597420553650597 0.8185580834816197 0.8750579805065548 1" class="collision"/>
+      <geom mesh="h_link1_collision_3" rgba="0.796055453185887 0.23207024886935246 0.5421674862491669 1" class="collision"/>
+      <geom mesh="h_link1_collision_4" rgba="0.5065601969239569 0.9646864021767905 0.6471928663783881 1" class="collision"/>
+      <geom mesh="h_link1_collision_5" rgba="0.6248254961944967 0.17094356072987316 0.6057255618454024 1" class="collision"/>
+      <geom mesh="h_link1_collision_6" rgba="0.657560238567502 0.932697897135235 0.19816477162043244 1" class="collision"/>
+      <geom mesh="h_link1_collision_7" rgba="0.23041474184659316 0.7999569914758526 0.4956489495908035 1" class="collision"/>
+      <geom mesh="h_link1_collision_8" rgba="0.753830861775399 0.950948589842179 0.07331941186236424 1" class="collision"/>
+      <geom mesh="h_link1_collision_9" rgba="0.1269151947288425 0.35296730697826595 0.7304463270600301 1" class="collision"/>
+    </body>
+  </worldbody>
+</mujoco>

@@ -1,3 +1,4 @@
+import numpy as np
 from robosuite.models.robots import GR1ArmsOnly, GR1FixedLowerBody, Kinova3, PandaDexRH, Sawyer, UR5e
 from robosuite.robots import register_robot_class
 
@@ -239,3 +240,110 @@ class UR5eDexRHOmron(UR5eDexRH):
     @property
     def default_base(self):
         return "OmronMobileBase"
+
+@register_robot_class("WheeledRobot")
+class DobotCR5Omron(DobotCR5):
+    @property
+    def default_base(self):
+        return "OmronMobileBase"
+
+    @property
+    def default_arms(self):
+        return {"right": "DobotCR5"}
+
+    @property
+    def init_qpos(self):
+        return np.array([1.57, -0.425, 2.551, -0.628, -1.57, np.pi / 2])
+
+    @property
+    def init_torso_qpos(self):
+        return np.array([0.2])
+
+    @property
+    def base_xpos_offset(self):
+        return {
+            "bins": (-0.6, -0.1, 0),
+            "empty": (-0.6, 0, 0),
+            "table": lambda table_length: (-0.16 - table_length / 2, 0, 0),
+        }
+
+@register_robot_class("WheeledRobot")
+class ArxLift(ArxR5Dual):
+    @property
+    def default_base(self):
+        return "ArxLiftBase"
+
+    @property
+    def default_arms(self):
+        return {"right": "ArxR5Dual"}
+
+    @property
+    def init_qpos(self):
+        return np.array([0.0, 0.3, 0.7, -0.67, 0.0, 0.12,
+                         0.0, 0.3, 0.7, -0.67, 0.0, 0.12])
+
+    @property
+    def init_torso_qpos(self):
+        return np.array([0.5])
+
+    @property
+    def base_xpos_offset(self):
+        return {
+            "bins": (-0.6, -0.1, 0),
+            "empty": (-0.6, 0, 0),
+            "table": lambda table_length: (-0.16 - table_length / 2, 0, 0),
+        }
+
+@register_robot_class("WheeledRobot")
+class ArxLift2(ArxX5Dual):
+    @property
+    def default_base(self):
+        return "ArxLiftBase"
+
+    @property
+    def default_arms(self):
+        return {"right": "ArxX5Dual"}
+
+    @property
+    def init_qpos(self):
+        return np.array([0.0, 0.3, 0.7, -0.67, 0.0, 0.12,
+                         0.0, 0.3, 0.7, -0.67, 0.0, 0.12])
+
+    @property
+    def init_torso_qpos(self):
+        return np.array([0.5])
+
+    @property
+    def base_xpos_offset(self):
+        return {
+            "bins": (-0.6, -0.1, 0),
+            "empty": (-0.6, 0, 0),
+            "table": lambda table_length: (-0.16 - table_length / 2, 0, 0),
+        }
+
+
+@register_robot_class("WheeledRobot")
+class ArxX7S(ArxX7sArmsOnly):
+    @property
+    def default_base(self):
+        return "ArxX7sBase"
+
+    @property
+    def default_arms(self):
+        return {"right": "ArxX7sArms"}
+
+    @property
+    def init_qpos(self):
+        return np.zeros(14)
+
+    @property
+    def init_torso_qpos(self):
+        return np.array([0.5])
+
+    @property
+    def base_xpos_offset(self):
+        return {
+            "bins": (-0.6, -0.1, 0),
+            "empty": (-0.6, 0, 0),
+            "table": lambda table_length: (-0.3 - table_length / 2, 0, 0),
+        }

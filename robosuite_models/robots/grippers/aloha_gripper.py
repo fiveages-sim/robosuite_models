@@ -1,5 +1,5 @@
 """
-Gripper with two fingers for Rethink Robots.
+Gripper with two fingers for Aloha Robots.
 """
 import numpy as np
 from robosuite.models.grippers import register_gripper

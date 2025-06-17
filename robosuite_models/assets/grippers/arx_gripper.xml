@@ -1,0 +1,125 @@
+<mujoco model="arx_gripper">
+  <asset>
+    <material name="black_metal" specular="0.5" shininess="0.09604875199999999"
+              rgba="0.030034 0.030034 0.030034 1.000000"/>
+    <material name="grey_metal" specular="0.5" shininess="0.09604875199999999"
+              rgba="0.081647 0.081647 0.081647 1.000000"/>
+
+    <!-- link6 -->
+    <mesh file="meshes/arx_gripper/link6/link6.obj" name="link6"/>
+    <mesh file="meshes/arx_gripper/link6/link6_collision_0.obj" name="link6_collision_0" scale="0.8 0.58 0.8"/>
+    <mesh file="meshes/arx_gripper/link6/link6_collision_1.obj" name="link6_collision_1"/>
+    <mesh file="meshes/arx_gripper/link6/link6_collision_2.obj" name="link6_collision_2"/>
+    <mesh file="meshes/arx_gripper/link6/link6_collision_3.obj" name="link6_collision_3"/>
+    <mesh file="meshes/arx_gripper/link6/link6_collision_4.obj" name="link6_collision_4"/>
+
+    <!-- link7 -->
+    <mesh file="meshes/arx_gripper/link7/link7.obj" name="link7"/>
+    <mesh file="meshes/arx_gripper/link7/link7_collision_0.obj" name="link7_collision_0"/>
+    <mesh file="meshes/arx_gripper/link7/link7_collision_1.obj" name="link7_collision_1"/>
+    <mesh file="meshes/arx_gripper/link7/link7_collision_2.obj" name="link7_collision_2"/>
+    <mesh file="meshes/arx_gripper/link7/link7_collision_3.obj" name="link7_collision_3"/>
+    <mesh file="meshes/arx_gripper/link7/link7_collision_4.obj" name="link7_collision_4"/>
+
+    <!-- link8 -->
+    <mesh file="meshes/arx_gripper/link8/link8.obj" name="link8"/>
+    <mesh file="meshes/arx_gripper/link8/link8_collision_0.obj" name="link8_collision_0"/>
+    <mesh file="meshes/arx_gripper/link8/link8_collision_1.obj" name="link8_collision_1"/>
+    <mesh file="meshes/arx_gripper/link8/link8_collision_2.obj" name="link8_collision_2"/>
+    <mesh file="meshes/arx_gripper/link8/link8_collision_3.obj" name="link8_collision_3"/>
+    <mesh file="meshes/arx_gripper/link8/link8_collision_4.obj" name="link8_collision_4"/>
+
+  </asset>
+  <default>
+    <default class="visual">
+      <geom group="1" type="mesh" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision">
+      <geom group="0" type="mesh"/>
+    </default>
+  </default>
+  <actuator>
+    <position ctrllimited="true" ctrlrange="0 0.044" joint="joint7" kp="1000" name="gripper_finger_joint1"
+              forcelimited="true" forcerange="-20 20"/>
+    <position ctrllimited="true" ctrlrange="0 0.044" joint="joint8" kp="1000" name="gripper_finger_joint2"
+              forcelimited="true" forcerange="-20 20"/>
+  </actuator>
+  <worldbody>
+    <body name="right_gripper" pos="0 0 0" quat="0 0.7071 0 0.7071">
+      <inertial pos="0.041697 2.4368e-05 0.00014464" quat="0.5 0.5 -0.5 0.5" mass="0.34089"
+                diaginertia="0.0005 0.00038 0.00028"/>
+      <site name="ft_frame" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 1" type="sphere" class="visual"/>
+      <geom material="black_metal" mesh="link6" class="visual"/>
+      <geom mesh="link6_collision_0" rgba="0.489118603217762 0.1934282728700356 0.12129312864454311 1"
+            class="collision"/>
+      <geom mesh="link6_collision_1" rgba="0.7709979990287019 0.3285278291991386 0.29931118868187345 1"
+            class="collision"/>
+      <geom mesh="link6_collision_2" rgba="0.7432826343042572 0.9919426110306461 0.33149220459390094 1"
+            class="collision"/>
+      <geom mesh="link6_collision_3" rgba="0.3880934922337095 0.013129106280388103 0.5929352328760329 1"
+            class="collision"/>
+      <geom mesh="link6_collision_4" rgba="0.43768011577625465 0.23603680407939998 0.41543674080083637 1"
+            class="collision"/>
+
+      <!-- This site was added for visualization. -->
+      <body name="eef" pos="0.14 0 0">
+        <site name="grip_site" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 0.5" type="sphere" class="visual"/>
+        <site name="ee_x" pos="0.1 0 0" size="0.005 .1" quat="0.707105  0 0.707108 0 " rgba="1 0 0 0" type="cylinder"
+              class="visual"/>
+        <site name="ee_y" pos="0 0.1 0" size="0.005 .1" quat="0.707105 0.707108 0 0" rgba="0 1 0 0" type="cylinder"
+              class="visual"/>
+        <site name="ee_z" pos="0 0 0.1" size="0.005 .1" quat="1 0 0 0" rgba="0 0 1 0" type="cylinder" class="visual"/>
+        <!-- This site was added for visualization. -->
+        <body name="line_front" pos="5 0 0">
+            <site name="grip_site_cylinder" pos="0 0 0" size="0.005 5" rgba="0 1 0 0.3" quat="0 0.7071 0 0.7071"
+                  type="cylinder" class="visual"/>
+        </body>
+      </body>
+
+      <body name="link7" pos="0.08657 0.024896 -0.0002436">
+        <inertial pos="-0.00035522 -0.007827 -0.0029883" quat="0.5 0.5 0.5 0.5" mass="0.064798"
+                  diaginertia="3e-05 3e-05 2e-05"/>
+        <joint name="joint7" pos="0 0 0" axis="0 1 0" type="slide" range="0 0.044" damping="100" armature="1.0"
+               frictionloss="1.0"/>
+        <geom material="grey_metal" mesh="link7" class="visual" name="link7_visual"/>
+        <geom mesh="link7_collision_0" rgba="0.4731633442376131 0.7951816126839897 0.12226788562978175 1"
+              class="collision" name="link7_collision_0"/>
+        <geom mesh="link7_collision_1" rgba="0.8402023355308844 0.04034408045018689 0.026946214659883228 1"
+              class="collision" conaffinity="1" contype="0" solref="0.02 1" friction="1 0.005 0.0001" condim="4"
+              name="link7_collision_1"/>
+        <geom mesh="link7_collision_2" rgba="0.3145122390022397 0.6171052192142443 0.255158030970578 1"
+              class="collision" name="link7_collision_2"/>
+        <geom mesh="link7_collision_3" rgba="0.5410612447355341 0.868513615039313 0.8749357018748324 1"
+              class="collision" name="link7_collision_3"/>
+        <geom mesh="link7_collision_4" rgba="0.13287379406348587 0.16048744292486716 0.11777957038161624 1"
+              class="collision" name="link7_collision_4"/>
+        <geom size="0.008 0.0018 0.006" pos="0.063 -0.024 0.0005" type="box" class="collision" solref="0.01 0.5"
+              friction="2 0.05 0.0001" conaffinity="1" contype="1" name="finger1_pad_collision"/>
+      </body>
+      <body name="link8" pos="0.08657 -0.0249 -0.00024366">
+        <inertial pos="-0.000355223 0.00782769 0.00242006" quat="0.5 0.5 0.5 0.5" mass="0.0647982"
+                  diaginertia="3e-05 3e-05 2e-05"/>
+        <joint name="joint8" pos="0 0 0" axis="0 -1 0" type="slide" range="0 0.044" damping="100" armature="1.0"
+               frictionloss="1.0"/>
+        <geom material="grey_metal" mesh="link8" class="visual" name="link8_visual"/>
+        <geom mesh="link8_collision_0" rgba="0.4528775472335842 0.5325300133382966 0.7381335130836191 1"
+              class="collision" name="link8_collision_0"/>
+        <geom mesh="link8_collision_1" rgba="0.7431163223466702 0.6328157401307135 0.803242096747205 1"
+              class="collision" conaffinity="1" contype="0" solref="0.02 1" friction="1 0.005 0.0001" condim="4"
+              name="link8_collision_1"/>
+        <geom mesh="link8_collision_2" rgba="0.494807192771469 0.52958778919952 0.506216265994362 1" class="collision"
+              name="link8_collision_2"/>
+        <geom mesh="link8_collision_3" rgba="0.2869119697870606 0.3493458775610373 0.6318005936262666 1"
+              class="collision"/>
+        <geom mesh="link8_collision_4" rgba="0.6112985581112275 0.7296152534549717 0.30158806779153846 1"
+              class="collision"/>
+        <geom size="0.008 0.0018 0.006" pos="0.063 0.024 0.0005" type="box" class="collision" solref="0.01 0.5"
+              friction="2 0.05 0.0001" conaffinity="1" contype="1" name="finger2_pad_collision"/>
+      </body>
+    </body>
+  </worldbody>
+  <sensor>
+    <force name="force_ee" site="ft_frame"/>
+    <torque name="torque_ee" site="ft_frame"/>
+  </sensor>
+</mujoco>

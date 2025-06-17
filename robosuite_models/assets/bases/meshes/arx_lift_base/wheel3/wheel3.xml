@@ -1,0 +1,39 @@
+<mujoco model="wheel3">
+  <default>
+    <default class="visual">
+      <geom group="2" type="mesh" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision">
+      <geom group="3" type="mesh"/>
+    </default>
+  </default>
+  <asset>
+    <material name="white_rubber.003" specular="0.5" shininess="0.11673613000000001" rgba="0.382509 0.382509 0.382509 1.000000"/>
+    <mesh file="wheel3.obj"/>
+    <mesh file="wheel3_collision_0.obj"/>
+    <mesh file="wheel3_collision_1.obj"/>
+    <mesh file="wheel3_collision_2.obj"/>
+    <mesh file="wheel3_collision_3.obj"/>
+    <mesh file="wheel3_collision_4.obj"/>
+    <mesh file="wheel3_collision_5.obj"/>
+    <mesh file="wheel3_collision_6.obj"/>
+    <mesh file="wheel3_collision_7.obj"/>
+    <mesh file="wheel3_collision_8.obj"/>
+    <mesh file="wheel3_collision_9.obj"/>
+  </asset>
+  <worldbody>
+    <body name="wheel3">
+      <geom material="white_rubber.003" mesh="wheel3" class="visual"/>
+      <geom mesh="wheel3_collision_0" rgba="0.875115893361323 0.46074681292672215 0.8768591392824343 1" class="collision"/>
+      <geom mesh="wheel3_collision_1" rgba="0.3873279565526344 0.6717463612824193 0.6330861690145992 1" class="collision"/>
+      <geom mesh="wheel3_collision_2" rgba="0.46595335115664716 0.0674901956088928 0.6818656231631267 1" class="collision"/>
+      <geom mesh="wheel3_collision_3" rgba="0.21520538412722678 0.4178158374918991 0.2572945033315972 1" class="collision"/>
+      <geom mesh="wheel3_collision_4" rgba="0.9645910552843866 0.7629716582664899 0.08079816676711027 1" class="collision"/>
+      <geom mesh="wheel3_collision_5" rgba="0.7894889054187094 0.07866179010725016 0.6160193581146359 1" class="collision"/>
+      <geom mesh="wheel3_collision_6" rgba="0.5912366874866394 0.7217640860653561 0.6945892193594511 1" class="collision"/>
+      <geom mesh="wheel3_collision_7" rgba="0.3289421236326986 0.7625962019025173 0.7102108722322701 1" class="collision"/>
+      <geom mesh="wheel3_collision_8" rgba="0.09797731296036871 0.03358424534905802 0.5736605837495353 1" class="collision"/>
+      <geom mesh="wheel3_collision_9" rgba="0.05105210768698398 0.8267902063930563 0.8210929544808152 1" class="collision"/>
+    </body>
+  </worldbody>
+</mujoco>

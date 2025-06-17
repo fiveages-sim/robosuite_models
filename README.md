@@ -6,11 +6,12 @@ This repository also provide examples of how to create a custom composable robot
 
 See [compositional.py](robosuite_models/robots/compositional.py): how to compose a new robot model.
 
-| Robot Model | Names |
-| --- | --- |
-| `RobotBaseModel` | aloha_mount, b1_base, go2_base |
-| `GripperModel` | ability_hands, aloha_gripper, g1_three_finger_gripper, pr2_gripper, schunk_svh_hands, umi_gripper, yumi_gripper, z1_gripper |
-| `ManipulatorModel` | aloha_robot, arx5_robot, g1_robot, h1_robot, pr2_robot, vx330s_robot, yumi_robot, z1_robot |
+| Robot Model        | Names                                                                                                                                                                                                                     |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `RobotBaseModel`   | aloha_mount, b1_base, go2_base, arx_base                                                                                                                                                                                  |
+| `GripperModel`     | ability_hands, aloha_gripper, g1_three_finger_gripper, pr2_gripper, schunk_svh_hands, umi_gripper, yumi_gripper, z1_gripper, arx_grippers                                                                                 |
+| `ManipulatorModel` | aloha_robot, arx5_robot, g1_robot, h1_robot, pr2_robot, vx330s_robot, yumi_robot, z1_robot, dobot_robot, .arx_robots                                                                                                      |
+| `Compositional`    | VX300SMobile, B1Z1, B1Z1Floating, Go2Arx5, Go2Arx5Floating, UR5eOmron, Kinova3Omron, SawyerOmron, GR1SchunkSVHArmsOnly, GR1SchunkSVHFixedLowerBody, PandaDexRHOmron, UR5eDexRH, UR5eDexRHOmron, ArxLift, ArxLift2, ArxX7S |
 
 Example code:
 

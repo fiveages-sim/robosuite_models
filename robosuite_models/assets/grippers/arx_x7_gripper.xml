@@ -1,0 +1,168 @@
+<mujoco model="arx_x7_gripper">
+  <asset>
+    <material name="black_metal" specular="0.5" shininess="0.09604875199999999"
+              rgba="0.030034 0.030034 0.030034 1.000000"/>
+    <material name="grey_metal" specular="0.5" shininess="0.09604875199999999"
+              rgba="0.081647 0.081647 0.081647 1.000000"/>
+
+    <!-- gripper base -->
+    <mesh name="gripper_base" file="meshes/arx_x7_gripper/gripper_base/gripper_base.obj"/>
+    <mesh name="gripper_base_collision_0" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_0.obj"/>
+    <mesh name="gripper_base_collision_1" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_1.obj"/>
+    <mesh name="gripper_base_collision_2" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_2.obj" />
+    <mesh name="gripper_base_collision_3" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_3.obj"/>
+    <mesh name="gripper_base_collision_4" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_4.obj"/>
+    <mesh name="gripper_base_collision_5" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_5.obj"/>
+    <mesh name="gripper_base_collision_6" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_6.obj"/>
+    <mesh name="gripper_base_collision_7" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_7.obj"/>
+    <mesh name="gripper_base_collision_8" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_8.obj"/>
+    <mesh name="gripper_base_collision_9" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_9.obj"/>
+
+    <!-- gripper left -->
+    <mesh name="gripper_left" file="meshes/arx_x7_gripper/gripper_left/gripper_left.obj"/>
+    <mesh name="gripper_left_collision_0" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_0.obj"/>
+    <mesh name="gripper_left_collision_1" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_1.obj"/>
+    <mesh name="gripper_left_collision_2" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_2.obj"/>
+    <mesh name="gripper_left_collision_3" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_3.obj"/>
+    <mesh name="gripper_left_collision_4" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_4.obj"/>
+    <mesh name="gripper_left_collision_5" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_5.obj"/>
+    <mesh name="gripper_left_collision_6" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_6.obj"/>
+    <mesh name="gripper_left_collision_7" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_7.obj"/>
+    <mesh name="gripper_left_collision_8" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_8.obj"/>
+    <mesh name="gripper_left_collision_9" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_9.obj"/>
+
+    <!-- gripper right -->
+    <mesh name="gripper_right"  file="meshes/arx_x7_gripper/gripper_right/gripper_right.obj"/>
+    <mesh name="gripper_right_collision_0" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_0.obj"/>
+    <mesh name="gripper_right_collision_1" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_1.obj"/>
+    <mesh name="gripper_right_collision_2" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_2.obj"/>
+    <mesh name="gripper_right_collision_3" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_3.obj"/>
+    <mesh name="gripper_right_collision_4" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_4.obj"/>
+    <mesh name="gripper_right_collision_5" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_5.obj"/>
+    <mesh name="gripper_right_collision_6" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_6.obj"/>
+    <mesh name="gripper_right_collision_7" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_7.obj"/>
+    <mesh name="gripper_right_collision_8" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_8.obj"/>   
+    <mesh name="gripper_right_collision_9" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_9.obj"/>
+
+  </asset>
+  <default>
+    <default class="visual">
+      <geom group="1" type="mesh" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision">
+      <geom group="0" type="mesh"/>
+    </default>
+  </default>
+  <actuator>
+    <position ctrllimited="true" ctrlrange="0 0.044" joint="gripper_0" kp="1000" name="gripper_finger_joint1"
+              forcelimited="true" forcerange="-20 20"/>
+    <position ctrllimited="true" ctrlrange="0 0.044" joint="gripper_1" kp="1000" name="gripper_finger_joint2"
+              forcelimited="true" forcerange="-20 20"/>
+  </actuator>
+  <worldbody>
+    <body name="right_gripper" pos="0 0 0" quat="0 0.7071 0 0.7071">
+      <inertial pos="0.041697 2.4368e-05 0.00014464" quat="0.5 0.5 -0.5 0.5" mass="0.34089"
+                diaginertia="0.0005 0.00038 0.00028"/>
+      <site name="ft_frame" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 1" type="sphere" class="visual"/>
+      <geom material="black_metal" mesh="gripper_base" class="visual"/>
+      <geom mesh="gripper_base_collision_0" rgba="0.5681473963238483 0.6919861755685462 0.22124525252434402 1"
+            class="collision"/>
+      <geom mesh="gripper_base_collision_1" rgba="0.8485746732260141 0.9289940259696773 0.8914388923076535 1"
+            class="collision"/>
+      <geom mesh="gripper_base_collision_2" rgba="0.41641498334884075 0.5943062582992678 0.0075793206889565035 1"
+            class="collision"/>
+      <geom mesh="gripper_base_collision_3" rgba="0.9730361606359038 0.9332745025730087 0.5127406049811315 1"
+            class="collision"/>
+      <geom mesh="gripper_base_collision_4" rgba="0.12543143088008124 0.15546557472805966 0.20294257135477023 1"
+            class="collision"/>
+      <geom mesh="gripper_base_collision_5" rgba="0.34291103242908927 0.5086433925722408 0.5857229069518042 1"
+            class="collision"/>
+      <geom mesh="gripper_base_collision_6" rgba="0.6028143008142384 0.6950256781414395 0.2892076926344367 1"
+            class="collision"/>
+      <geom mesh="gripper_base_collision_7" rgba="0.14183866816902102 0.6685924679447681 0.4244796688483836 1"
+            class="collision"/>
+      <geom mesh="gripper_base_collision_8" rgba="0.731619350985423 0.1494673436099203 0.7488763431902947 1"
+            class="collision"/>
+      <geom mesh="gripper_base_collision_9" rgba="0.5845889313752468 0.3919275437437073 0.5327741992567353 1"
+            class="collision"/>
+      <!-- This site was added for visualization. -->
+      <body name="eef" pos="0.185 0 0.02">
+        <site name="grip_site" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 0.5" type="sphere" class="visual"/>
+        <site name="ee_x" pos="0.1 0 0" size="0.005 .1" quat="0.707105  0 0.707108 0 " rgba="1 0 0 0" type="cylinder"
+              class="visual"/>
+        <site name="ee_y" pos="0 0.1 0" size="0.005 .1" quat="0.707105 0.707108 0 0" rgba="0 1 0 0" type="cylinder"
+              class="visual"/>
+        <site name="ee_z" pos="0 0 0.1" size="0.005 .1" quat="1 0 0 0" rgba="0 0 1 0" type="cylinder" class="visual"/>
+        <!-- This site was added for visualization. -->
+        <body name="line_front" pos="5 0 0">
+          <site name="grip_site_cylinder" pos="0 0 0" size="0.005 5" rgba="0 1 0 0.3" quat="0 0.7071 0 0.7071"
+                type="cylinder" class="visual"/>
+        </body>
+      </body>
+
+      <body name="gripper_left" pos="0.12737 0.024896 0.021756">
+        <inertial pos="-0.000355223 -0.00782704 -0.00298832" quat="0.5 0.5 0.5 0.5" mass="0.0647982"
+                  diaginertia="3e-05 3e-05 2e-05"/>
+        <joint name="gripper_0" pos="0 0 0" axis="0 1 0" type="slide" range="0 0.044" damping="100" armature="1.0"
+               frictionloss="1.0"/>
+        <geom material="grey_metal" mesh="gripper_left" class="visual"/>
+        <geom mesh="gripper_left_collision_0" rgba="0.20556432454635065 0.6991014492539741 0.15793680115728181 1"
+              class="collision"/>
+        <geom mesh="gripper_left_collision_1" rgba="0.9689449980555275 0.9316731470233709 0.4015759870176595 1"
+              class="collision"/>
+        <geom mesh="gripper_left_collision_2" rgba="0.011224552482115402 0.7957387309391405 0.9516932093718008 1"
+              class="collision"/>
+        <geom mesh="gripper_left_collision_3" rgba="0.29178013496556876 0.7400331581753277 0.803379196522531 1"
+              class="collision"/>
+        <geom mesh="gripper_left_collision_4" rgba="0.3776178021814025 0.8482334664909847 0.18022140327043734 1"
+              class="collision"/>
+        <geom mesh="gripper_left_collision_5" rgba="0.7517471286086157 0.741036047828934 0.2448500911801379 1"
+              class="collision"/>
+        <geom mesh="gripper_left_collision_6" rgba="0.43271991371916607 0.8857301482867653 0.190772985934474 1"
+              class="collision"/>
+        <geom mesh="gripper_left_collision_7" rgba="0.20509705198371886 0.8353012858587042 0.5062652121837846 1"
+              class="collision"/>
+        <geom mesh="gripper_left_collision_8" rgba="0.17057068719835167 0.5638451579481717 0.5616675798807681 1"
+              class="collision"/>
+        <geom mesh="gripper_left_collision_9" rgba="0.9625981874933388 0.7527055131628574 0.3815786155829447 1"
+              class="collision"/>
+        <geom size="0.008 0.0018 0.006" pos="0.063 -0.024 0.0005" type="box" class="collision" solref="0.01 0.5"
+              friction="2 0.05 0.0001" conaffinity="1" contype="1" name="finger1_pad_collision"/>
+      </body>
+      <body name="gripper_right" pos="0.12737 -0.0249 0.021756">
+        <inertial pos="-0.000355223 0.00782769 0.00242006" quat="0.5 0.5 0.5 0.5" mass="0.0647982"
+                  diaginertia="3e-05 3e-05 2e-05"/>
+        <joint name="gripper_1" pos="0 0 0" axis="0 -1 0" type="slide" range="0 0.044"
+               damping="100" armature="1.0"
+               frictionloss="1.0"/>
+        <geom material="grey_metal" mesh="gripper_right" class="visual"/>
+        <geom mesh="gripper_right_collision_0" rgba="0.9576875801972524 0.242680120932935 0.2858686192735179 1"
+              class="collision"/>
+        <geom mesh="gripper_right_collision_1" rgba="0.20634090614194966 0.5751021357169948 0.8457463431728296 1"
+              class="collision"/>
+        <geom mesh="gripper_right_collision_2" rgba="0.8204572328366698 0.016073368269124977 0.26934661497878565 1"
+              class="collision"/>
+        <geom mesh="gripper_right_collision_3" rgba="0.28236386394798596 0.5029081327455216 0.9538914441711666 1"
+              class="collision"/>
+        <geom mesh="gripper_right_collision_4" rgba="0.6654942333770845 0.5003501672650256 0.6559262170414845 1"
+              class="collision"/>
+        <geom mesh="gripper_right_collision_5" rgba="0.7347459436348963 0.8058276503785828 0.41900625892261756 1"
+              class="collision"/>
+        <geom mesh="gripper_right_collision_6" rgba="0.5713957931081082 0.07998340803121495 0.4485012664919684 1"
+              class="collision"/>
+        <geom mesh="gripper_right_collision_7" rgba="0.4964806765149582 0.5848248193869579 0.5686846362558305 1"
+              class="collision"/>
+        <geom mesh="gripper_right_collision_8" rgba="0.3213668492167858 0.6106955056718918 0.024287169940366504 1"
+              class="collision"/>
+        <geom mesh="gripper_right_collision_9" rgba="0.12486794081812036 0.31360770516729064 0.39982327611766977 1"
+              class="collision"/>
+        <geom size="0.008 0.0018 0.006" pos="0.063 0.024 0.0005" type="box" class="collision" solref="0.01 0.5"
+              friction="2 0.05 0.0001" conaffinity="1" contype="1" name="finger2_pad_collision"/>
+      </body>
+    </body>
+  </worldbody>
+  <sensor>
+    <force name="force_ee" site="ft_frame"/>
+    <torque name="torque_ee" site="ft_frame"/>
+  </sensor>
+</mujoco>
