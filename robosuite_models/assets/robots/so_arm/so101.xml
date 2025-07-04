@@ -1,0 +1,195 @@
+<mujoco model="so101 single">
+  <default>
+    <default class="visual">
+      <geom type="mesh" contype="0" conaffinity="0" group="1"/>
+    </default>
+    <default class="collision">
+      <geom type="mesh" group="0"/>
+    </default>
+    <default class="sts3215">
+      <joint damping="0.1" frictionloss="0.001" actuatorfrcrange="-100 100" limited="true"/>
+    </default>
+  </default>
+
+  <compiler angle="radian"/>
+
+  <worldbody>
+    <body name="base">
+      <body name="base_link">
+        <site name="right_center" pos="0 0 0" size="0.01" rgba="1 0.3 0.3 1" group="2"/>
+        <geom name="base_link_collision_0" mesh="base_motor_holder"
+              class="collision"/>
+        <geom name="base_link_collision_1" mesh="base" class="collision"/>
+        <geom name="base_link_collision_2"
+              mesh="base_waveshare_mounting_plate" class="collision"/>
+        <geom name="base_link_visual_0" mesh="base_motor_holder"
+              material="3d_printed" class="visual"/>
+        <geom name="base_link_visual_1" mesh="base" material="3d_printed"
+              class="visual"/>
+        <geom name="base_link_visual_2" mesh="base_waveshare_mounting_plate"
+              material="3d_printed" class="visual"/>
+        <body name="motor1" pos="0.0263345 0 0.0437">
+          <geom name="motor1_visual" mesh="sts3215_03a_v1" material="sts3215"
+                class="visual"/>
+        </body>
+        <body name="shoulder" pos="0.0388353 0 0.0624"
+              quat="1.760384697849545e-12 -1.326794896676365e-06 -0.9999999999982396 1.326794896676365e-06">
+          <inertial pos="-0.0307604 -1.66727e-05 -0.0252713" mass="0.100006"
+                    diaginertia="8.3759e-05 8.10403e-05 2.39783e-05"/>
+          <joint name="shoulder_pan" class="sts3215" range="-1.91986 1.91986" axis="0 0 1"/>
+          <geom name="shoulder_collision_0" mesh="motor_holder_base"
+                class="collision"/>
+          <geom name="shoulder_collision_1" mesh="rotation_pitch"
+                class="collision"/>
+          <geom name="shoulder_visual_0" mesh="motor_holder_base"
+                material="3d_printed" class="visual"/>
+          <geom name="shoulder_visual_1" mesh="rotation_pitch"
+                material="3d_printed" class="visual"/>
+          <body name="motor2" pos="-0.0303992 0.000422241 -0.0417"
+                quat="0.4999981633974483 0.49999999999662686 0.49999999999662686 -0.5000018366025516">
+            <geom name="motor2_visual" mesh="sts3215_03a_v1"
+                  material="sts3215" class="visual"/>
+            <geom name="motor2_collision" mesh="sts3215_03a_v1" class="collision"/>
+          </body>
+          <body name="upper_arm" pos="-0.0303992 -0.0182778 -0.0542"
+                quat="0.4999981633974483 -0.49999999999662686 -0.49999999999662686 -0.5000018366025516">
+            <inertial pos="-0.0898471 -0.00838224 0.0184089" mass="0.103"
+                      diaginertia="4.08002e-05 0.000147318 0.000142487"/>
+            <joint name="shoulder_lift" class="sts3215" range="-1.74533 1.74533" axis="0 0 1"/>
+            <geom name="upper_arm_collision" mesh="upper_arm"
+                  class="collision"/>
+            <geom name="upper_arm_visual" mesh="upper_arm"
+                  material="3d_printed" class="visual"/>
+            <body name="motor3" pos="-0.11257 -0.0155 0.0187"
+                  quat="9.381839453657387e-07 -0.7071054825106139 0.7071080798588512 -9.381873919998719e-07">
+              <geom name="motor3_visual" mesh="sts3215_03a_v1"
+                    material="sts3215" class="visual"/>
+              <geom name="motor3_collision" mesh="sts3215_03a_v1" class="collision"/>
+            </body>
+            <body name="lower_arm" pos="-0.11257 -0.028 2.46331e-16"
+                  quat="0.7071054825112363 -6.378480768639785e-16 -2.3060707759503846e-16 0.7071080798594735">
+              <inertial pos="-0.0980701 0.00324376 0.0182831" mass="0.104"
+                        diaginertia="2.87438e-05 0.000159844 0.00014529"/>
+              <joint name="elbow_flex" class="sts3215" range="-1.69 1.69" axis="0 0 1"/>
+              <geom name="lower_arm_collision_0" mesh="under_arm"
+                    class="collision"/>
+              <geom name="lower_arm_collision_1" mesh="motor_holder_wrist"
+                    class="collision"/>
+              <geom name="lower_arm_visual_0" mesh="under_arm"
+                    material="3d_printed" class="visual"/>
+              <geom name="lower_arm_visual_1" mesh="motor_holder_wrist"
+                    material="3d_printed" class="visual"/>
+              <body name="motor4" pos="-0.1224 0.0052 0.0187"
+                    quat="1.758594462849548e-12 -1.3267948966763673e-06 0.9999999999982396 -1.3267948966763673e-06">
+                <geom name="motor4_visual" mesh="sts3215_03a_v1"
+                      material="sts3215" class="visual"/>
+              </body>
+              <body name="wrist" pos="-0.1349 0.0052 1.65232e-16"
+                    quat="0.7071054825112363 2.1600660094999876e-15 -1.3619626877340945e-16 -0.7071080798594735">
+                <inertial pos="-0.000103312 -0.0386143 0.0281156" mass="0.079"
+                          diaginertia="3.68263e-05 2.5391e-05 2.1e-05"/>
+                <joint name="wrist_flex" class="sts3215" range="-1.65806 1.65806" axis="0 0 1"/>
+                <geom name="wrist_collision" mesh="wrist_roll_pitch"
+                      class="collision"/>
+                <geom name="wrist_visual" mesh="wrist_roll_pitch"
+                      material="3d_printed" class="visual"/>
+                <body name="motor5" pos="5.55112e-17 -0.0424 0.0306"
+                      quat="0.4999981633974483 0.49999999999662686 0.49999999999662686 -0.5000018366025516">
+                  <geom name="motor5_visual" mesh="sts3215_03a_v1"
+                        material="sts3215" class="visual"/>
+                </body>
+                <body name="gripper" pos="0 -0.0611 0.0181"
+                      quat="9.050176421647001e-07 9.71353573374498e-07 0.7071080798588064 0.7071054825106571">
+                  <joint name="wrist_roll" class="sts3215" range="-2.74385 2.84121" axis="0 0 1"/>
+
+                  <body name="camera_support" pos="-0.001 0.025 -0.023"
+                        quat="0.4999981633974483 -0.49999999999662686 0.49999999999662686 0.5000018366025516">
+                    <geom name="camera_support_collision"
+                          mesh="camera_support" class="collision"/>
+                    <geom name="camera_support_visual" mesh="camera_support"
+                          material="3d_printed" class="visual"/>
+                    <body name="camera" pos="0.024 0 0.0375" quat="0.953696686755512 0.0 0.30077006112902743 0.0">
+                      <geom class="visual" name="camera_visual_0" mesh="camera_0"
+                            material="camera_mat-17.001"/>
+                      <geom class="visual" name="camera_visual_1" mesh="camera_1"
+                            material="camera_mat-15.001"/>
+                      <geom class="visual" name="camera_visual_2" mesh="camera_2"
+                            material="camera_mat-17.001"/>
+                      <geom class="visual" name="camera_visual_3" mesh="camera_3"
+                            material="camera_mat-13.001"/>
+                      <geom class="visual" name="camera_visual_4" mesh="camera_4"
+                            material="camera_mat-11.001"/>
+                      <geom class="visual" name="camera_visual_5" mesh="camera_5"
+                            material="camera_mat-7.001"/>
+                      <geom class="visual" name="camera_visual_6" mesh="camera_6"
+                            material="camera_mat-6.001"/>
+                      <geom class="visual" name="camera_visual_7" mesh="camera_7"
+                            material="camera_mat-17.001"/>
+                      <geom class="visual" name="camera_visual_8" mesh="camera_8"
+                            material="camera_mat-24.001"/>
+                      <camera mode="fixed" name="right_eye_in_hand" pos="0.02 0 0" fovy="75" quat="-0.5 -0.5 0.5 0.5"/>
+                    </body>
+                  </body>
+
+                  <body name="right_hand" quat="0 1 1 0"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <asset>
+    <material name="3d_printed" rgba="0.4 0.8196 0.945 1.0"/>
+    <material name="sts3215" rgba="0.1 0.1 0.1 1.0"/>
+    <material name="collision_material" rgba="1.0 0.28 0.1 0.9"/>
+
+    <material name="camera_mat-11.001" specular="0.0" shininess="0.0" rgba="1.000000 1.000000 0.752941 1.000000"/>
+    <material name="camera_mat-13.001" specular="0.0" shininess="0.0" rgba="0.752941 0.752941 0.000000 1.000000"/>
+    <material name="camera_mat-15.001" specular="0.0" shininess="0.0" rgba="0.698039 0.698039 0.698039 1.000000"/>
+    <material name="camera_mat-17.001" specular="0.0" shininess="0.0" rgba="0.010000 0.010000 0.010000 1.000000"/>
+    <material name="camera_mat-24.001" specular="0.0" shininess="0.0" rgba="0.505882 0.529412 0.549020 1.000000"/>
+    <material name="camera_mat-6.001" specular="0.0" shininess="1.0" rgba="0.038033 0.038033 0.038033 1.000000"/>
+    <material name="camera_mat-7.001" specular="0.0" shininess="0.0" rgba="0.050000 0.050000 0.050000 1.000000"/>
+
+    <mesh name="base_motor_holder" file="meshes/so101/base_motor_holder.stl"/>
+    <mesh name="base" file="meshes/so101/base.stl"/>
+    <mesh name="base_waveshare_mounting_plate" file="meshes/so101/base_waveshare_mounting_plate.stl"/>
+    <mesh name="sts3215_03a_v1" file="meshes/so101/sts3215_03a_v1.stl" inertia="shell"/>
+    <mesh name="motor_holder_base" file="meshes/so101/motor_holder_base.stl" inertia="shell"/>
+    <mesh name="rotation_pitch" file="meshes/so101/rotation_pitch.stl"/>
+    <mesh name="upper_arm" file="meshes/so101/upper_arm.stl"/>
+    <mesh name="under_arm" file="meshes/so101/under_arm.stl"/>
+    <mesh name="motor_holder_wrist" file="meshes/so101/motor_holder_wrist.stl"/>
+    <mesh name="wrist_roll_pitch" file="meshes/so101/wrist_roll_pitch.stl"/>
+    <mesh name="camera_support" file="meshes/so101/camera_support.stl"/>
+
+    <mesh name="camera_0" file="meshes/so101/camera/camera_0.obj"/>
+    <mesh name="camera_1" file="meshes/so101/camera/camera_1.obj"/>
+    <mesh name="camera_2" file="meshes/so101/camera/camera_2.obj"/>
+    <mesh name="camera_3" file="meshes/so101/camera/camera_3.obj"/>
+    <mesh name="camera_4" file="meshes/so101/camera/camera_4.obj"/>
+    <mesh name="camera_5" file="meshes/so101/camera/camera_5.obj"/>
+    <mesh name="camera_6" file="meshes/so101/camera/camera_6.obj"/>
+    <mesh name="camera_7" file="meshes/so101/camera/camera_7.obj"/>
+    <mesh name="camera_8" file="meshes/so101/camera/camera_8.obj" inertia="shell"/>
+  </asset>
+
+  <actuator>
+    <motor ctrllimited="true" ctrlrange="-50.0 50.0" name="shoulder_pan" joint="shoulder_pan"/>
+    <motor ctrllimited="true" ctrlrange="-50.0 50.0" name="shoulder_lift" joint="shoulder_lift"/>
+    <motor ctrllimited="true" ctrlrange="-50.0 50.0" name="elbow_flex" joint="elbow_flex"/>
+    <motor ctrllimited="true" ctrlrange="-50.0 50.0" name="wrist_flex" joint="wrist_flex"/>
+    <motor ctrllimited="true" ctrlrange="-50.0 50.0" name="wrist_roll" joint="wrist_roll"/>
+  </actuator>
+
+  <contact>
+    <exclude body1="base_link" body2="shoulder"/>
+    <exclude body1="lower_arm" body2="wrist"/>
+    <exclude body1="gripper" body2="camera_support"/>
+    <exclude body1="camera_support" body2="camera"/>
+    <exclude body1="wrist" body2="gripper"/>
+  </contact>
+</mujoco>

@@ -6,43 +6,43 @@
               rgba="0.081647 0.081647 0.081647 1.000000"/>
 
     <!-- gripper base -->
-    <mesh name="gripper_base" file="meshes/arx_x7_gripper/gripper_base/gripper_base.obj"/>
-    <mesh name="gripper_base_collision_0" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_0.obj"/>
-    <mesh name="gripper_base_collision_1" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_1.obj"/>
-    <mesh name="gripper_base_collision_2" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_2.obj" />
-    <mesh name="gripper_base_collision_3" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_3.obj"/>
-    <mesh name="gripper_base_collision_4" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_4.obj"/>
-    <mesh name="gripper_base_collision_5" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_5.obj"/>
-    <mesh name="gripper_base_collision_6" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_6.obj"/>
-    <mesh name="gripper_base_collision_7" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_7.obj"/>
-    <mesh name="gripper_base_collision_8" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_8.obj"/>
-    <mesh name="gripper_base_collision_9" file="meshes/arx_x7_gripper/gripper_base/gripper_base_collision_9.obj"/>
+    <mesh name="gripper_base" file="arx_x7_gripper/gripper_base/gripper_base.obj"/>
+    <mesh name="gripper_base_collision_0" file="arx_x7_gripper/gripper_base/gripper_base_collision_0.obj"/>
+    <mesh name="gripper_base_collision_1" file="arx_x7_gripper/gripper_base/gripper_base_collision_1.obj"/>
+    <mesh name="gripper_base_collision_2" file="arx_x7_gripper/gripper_base/gripper_base_collision_2.obj" />
+    <mesh name="gripper_base_collision_3" file="arx_x7_gripper/gripper_base/gripper_base_collision_3.obj"/>
+    <mesh name="gripper_base_collision_4" file="arx_x7_gripper/gripper_base/gripper_base_collision_4.obj"/>
+    <mesh name="gripper_base_collision_5" file="arx_x7_gripper/gripper_base/gripper_base_collision_5.obj"/>
+    <mesh name="gripper_base_collision_6" file="arx_x7_gripper/gripper_base/gripper_base_collision_6.obj"/>
+    <mesh name="gripper_base_collision_7" file="arx_x7_gripper/gripper_base/gripper_base_collision_7.obj"/>
+    <mesh name="gripper_base_collision_8" file="arx_x7_gripper/gripper_base/gripper_base_collision_8.obj"/>
+    <mesh name="gripper_base_collision_9" file="arx_x7_gripper/gripper_base/gripper_base_collision_9.obj"/>
 
     <!-- gripper left -->
-    <mesh name="gripper_left" file="meshes/arx_x7_gripper/gripper_left/gripper_left.obj"/>
-    <mesh name="gripper_left_collision_0" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_0.obj"/>
-    <mesh name="gripper_left_collision_1" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_1.obj"/>
-    <mesh name="gripper_left_collision_2" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_2.obj"/>
-    <mesh name="gripper_left_collision_3" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_3.obj"/>
-    <mesh name="gripper_left_collision_4" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_4.obj"/>
-    <mesh name="gripper_left_collision_5" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_5.obj"/>
-    <mesh name="gripper_left_collision_6" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_6.obj"/>
-    <mesh name="gripper_left_collision_7" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_7.obj"/>
-    <mesh name="gripper_left_collision_8" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_8.obj"/>
-    <mesh name="gripper_left_collision_9" file="meshes/arx_x7_gripper/gripper_left/gripper_left_collision_9.obj"/>
+    <mesh name="gripper_left" file="arx_x7_gripper/gripper_left/gripper_left.obj"/>
+    <mesh name="gripper_left_collision_0" file="arx_x7_gripper/gripper_left/gripper_left_collision_0.obj"/>
+    <mesh name="gripper_left_collision_1" file="arx_x7_gripper/gripper_left/gripper_left_collision_1.obj"/>
+    <mesh name="gripper_left_collision_2" file="arx_x7_gripper/gripper_left/gripper_left_collision_2.obj"/>
+    <mesh name="gripper_left_collision_3" file="arx_x7_gripper/gripper_left/gripper_left_collision_3.obj"/>
+    <mesh name="gripper_left_collision_4" file="arx_x7_gripper/gripper_left/gripper_left_collision_4.obj"/>
+    <mesh name="gripper_left_collision_5" file="arx_x7_gripper/gripper_left/gripper_left_collision_5.obj"/>
+    <mesh name="gripper_left_collision_6" file="arx_x7_gripper/gripper_left/gripper_left_collision_6.obj"/>
+    <mesh name="gripper_left_collision_7" file="arx_x7_gripper/gripper_left/gripper_left_collision_7.obj"/>
+    <mesh name="gripper_left_collision_8" file="arx_x7_gripper/gripper_left/gripper_left_collision_8.obj"/>
+    <mesh name="gripper_left_collision_9" file="arx_x7_gripper/gripper_left/gripper_left_collision_9.obj"/>
 
     <!-- gripper right -->
-    <mesh name="gripper_right"  file="meshes/arx_x7_gripper/gripper_right/gripper_right.obj"/>
-    <mesh name="gripper_right_collision_0" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_0.obj"/>
-    <mesh name="gripper_right_collision_1" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_1.obj"/>
-    <mesh name="gripper_right_collision_2" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_2.obj"/>
-    <mesh name="gripper_right_collision_3" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_3.obj"/>
-    <mesh name="gripper_right_collision_4" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_4.obj"/>
-    <mesh name="gripper_right_collision_5" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_5.obj"/>
-    <mesh name="gripper_right_collision_6" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_6.obj"/>
-    <mesh name="gripper_right_collision_7" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_7.obj"/>
-    <mesh name="gripper_right_collision_8" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_8.obj"/>   
-    <mesh name="gripper_right_collision_9" file="meshes/arx_x7_gripper/gripper_right/gripper_right_collision_9.obj"/>
+    <mesh name="gripper_right"  file="arx_x7_gripper/gripper_right/gripper_right.obj"/>
+    <mesh name="gripper_right_collision_0" file="arx_x7_gripper/gripper_right/gripper_right_collision_0.obj"/>
+    <mesh name="gripper_right_collision_1" file="arx_x7_gripper/gripper_right/gripper_right_collision_1.obj"/>
+    <mesh name="gripper_right_collision_2" file="arx_x7_gripper/gripper_right/gripper_right_collision_2.obj"/>
+    <mesh name="gripper_right_collision_3" file="arx_x7_gripper/gripper_right/gripper_right_collision_3.obj"/>
+    <mesh name="gripper_right_collision_4" file="arx_x7_gripper/gripper_right/gripper_right_collision_4.obj"/>
+    <mesh name="gripper_right_collision_5" file="arx_x7_gripper/gripper_right/gripper_right_collision_5.obj"/>
+    <mesh name="gripper_right_collision_6" file="arx_x7_gripper/gripper_right/gripper_right_collision_6.obj"/>
+    <mesh name="gripper_right_collision_7" file="arx_x7_gripper/gripper_right/gripper_right_collision_7.obj"/>
+    <mesh name="gripper_right_collision_8" file="arx_x7_gripper/gripper_right/gripper_right_collision_8.obj"/>   
+    <mesh name="gripper_right_collision_9" file="arx_x7_gripper/gripper_right/gripper_right_collision_9.obj"/>
 
   </asset>
   <default>

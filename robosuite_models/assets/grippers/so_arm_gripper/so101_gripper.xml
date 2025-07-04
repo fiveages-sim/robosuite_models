@@ -1,0 +1,110 @@
+<mujoco model="so101 gripper">
+  <default>
+    <default class="visual">
+      <geom type="mesh" contype="0" conaffinity="0" group="1"/>
+    </default>
+    <default class="collision">
+      <geom type="mesh" group="0"/>
+    </default>
+    <default class="sts3215">
+      <joint damping="0.1" frictionloss="0.001" actuatorfrcrange="-100 100" limited="true"/>
+    </default>
+  </default>
+
+  <compiler angle="radian"/>
+
+  <worldbody>
+    <body name="right_gripper" quat="0 0.7071 0.7071 0">
+      <inertial pos="0.000213627 0.000245138 -0.025187" mass="0.087"
+                diaginertia="2.75087e-05 4.33657e-05 3.45059e-05"/>
+
+      <site name="ft_frame" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 1" type="sphere" class="visual"/>
+      <geom name="gripper_collision_0"
+            mesh="wrist_roll_follower_collision_0" class="collision"/>
+      <geom name="gripper_collision_1"
+            mesh="wrist_roll_follower_collision_1" class="collision"/>
+      <geom name="gripper_collision_2"
+            mesh="wrist_roll_follower_collision_2" class="collision"/>
+      <geom name="gripper_visual" mesh="wrist_roll_follower"
+            material="3d_printed" class="visual"/>
+      <body name="motor6" pos="0.0077 0.0001 -0.0234"
+            quat="0.7071054825112363 -0.7071080798594735 4.866950315150482e-15 -4.906184711737623e-15">
+        <geom name="motor6_visual" mesh="sts3215_03a_v1"
+              material="sts3215" class="visual"/>
+      </body>
+
+      <!-- This site was added for visualization. -->
+      <body name="eef" pos="0 0 -0.1" quat="0 0.7071 0 -0.7071">
+        <site name="grip_site" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 0.5" type="sphere" class="visual"/>
+        <site name="ee_x" pos="0.1 0 0" size="0.005 .1" quat="0.707105  0 0.707108 0 " rgba="1 0 0 0" type="cylinder"
+              class="visual"/>
+        <site name="ee_y" pos="0 0.1 0" size="0.005 .1" quat="0.707105 0.707108 0 0" rgba="0 1 0 0" type="cylinder"
+              class="visual"/>
+        <site name="ee_z" pos="0 0 0.1" size="0.005 .1" quat="1 0 0 0" rgba="0 0 1 0" type="cylinder" class="visual"/>
+        <!-- This site was added for visualization. -->
+        <body name="line_front" pos="5 0 0">
+          <site name="grip_site_cylinder" pos="0 0 0" size="0.005 5" rgba="0 1 0 0.3" quat="0 0.7071 0 0.7071"
+                type="cylinder" class="visual"/>
+        </body>
+        <body name="line_back" pos="-5 0 0">
+          <site name="grip_site_cylinder_back" pos="0 0 0" size="0.005 5" rgba="0 1 0 0.01" quat="0 0.7071 0 0.7071"
+                type="cylinder" class="visual"/>
+        </body>
+      </body>
+
+      <body name="moving_jaw_so101_v1" pos="0.0202 0.0188 -0.0234"
+            quat="0.7071054825112363 0.7071080798594735 -4.920379969915909e-15 -4.884009037843754e-15">
+        <inertial pos="-0.00157495 -0.0300244 0.0192755" mass="0.012"
+                  diaginertia="6.61427e-06 1.89032e-06 5.28738e-06"/>
+        <joint name="gripper" class="sts3215" range="-0.174533 1.74533" axis="0 0 1"/>
+        <geom name="moving_jaw_so101_v1_collision_0"
+              mesh="moving_jaw_collision_0" class="collision"/>
+        <geom name="moving_jaw_so101_v1_collision_1"
+              mesh="moving_jaw_collision_1" class="collision"/>
+        <geom name="moving_jaw_so101_v1_collision_2"
+              mesh="moving_jaw_collision_2" class="collision"/>
+
+        <geom name="moving_jaw_so101_v1_visual" mesh="moving_jaw"
+              material="3d_printed" class="visual"/>
+        <body name="moving_jaw_tip" pos="-0.01 -0.0745 0.019">
+          <geom size=" 0.0018 0.008  0.006" type="box" class="collision" solref="0.01 0.5"
+                friction="2 0.05 0.0001" conaffinity="1" contype="1" name="moving_jaw_pad_collision"/>
+        </body>
+      </body>
+      <body name="gripperframe" pos="-0.0079 -0.000218121 -0.0981274">
+        <geom size=" 0.0018 0.008  0.006" type="box" class="collision" solref="0.01 0.5"
+              friction="2 0.05 0.0001" conaffinity="1" contype="1" name="fixed_jaw_pad_collision"/>
+      </body>
+    </body>
+  </worldbody>
+
+  <asset>
+    <material name="3d_printed" rgba="0.4 0.8196 0.945 1.0"/>
+    <material name="sts3215" rgba="0.1 0.1 0.1 1.0"/>
+    <material name="collision_material" rgba="1.0 0.28 0.1 0.9"/>
+
+    <mesh name="sts3215_03a_v1" file="meshes/so101/sts3215_03a_v1.stl" inertia="shell"/>
+    <mesh name="wrist_roll_follower_collision_0"
+          file="meshes/so101/wrist_roll_follower/wrist_roll_follower_collision_0.obj"/>
+    <mesh name="wrist_roll_follower_collision_1"
+          file="meshes/so101/wrist_roll_follower/wrist_roll_follower_collision_1.obj"/>
+    <mesh name="wrist_roll_follower_collision_2"
+          file="meshes/so101/wrist_roll_follower/wrist_roll_follower_collision_2.obj"/>
+    <mesh name="wrist_roll_follower" file="meshes/so101/wrist_roll_follower/wrist_roll_follower.stl"/>
+
+    <mesh name="moving_jaw_collision_0" file="meshes/so101/moving_jaw/moving_jaw_collision_0.obj"/>
+    <mesh name="moving_jaw_collision_1" file="meshes/so101/moving_jaw/moving_jaw_collision_1.obj"/>
+    <mesh name="moving_jaw_collision_2" file="meshes/so101/moving_jaw/moving_jaw_collision_2.obj"/>
+    <mesh name="moving_jaw" file="meshes/so101/moving_jaw/moving_jaw.stl"/>
+  </asset>
+
+  <actuator>
+    <position ctrllimited="true" forcelimited="true" forcerange="-3.35 3.35" ctrlrange="-0.17453 1.74533" name="gripper"
+              joint="gripper"/>
+  </actuator>
+
+  <sensor>
+    <force name="force_ee" site="ft_frame"/>
+    <torque name="torque_ee" site="ft_frame"/>
+  </sensor>
+</mujoco>

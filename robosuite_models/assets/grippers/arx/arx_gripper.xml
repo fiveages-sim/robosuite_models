@@ -6,28 +6,28 @@
               rgba="0.081647 0.081647 0.081647 1.000000"/>
 
     <!-- link6 -->
-    <mesh file="meshes/arx_gripper/link6/link6.obj" name="link6"/>
-    <mesh file="meshes/arx_gripper/link6/link6_collision_0.obj" name="link6_collision_0" scale="0.8 0.58 0.8"/>
-    <mesh file="meshes/arx_gripper/link6/link6_collision_1.obj" name="link6_collision_1"/>
-    <mesh file="meshes/arx_gripper/link6/link6_collision_2.obj" name="link6_collision_2"/>
-    <mesh file="meshes/arx_gripper/link6/link6_collision_3.obj" name="link6_collision_3"/>
-    <mesh file="meshes/arx_gripper/link6/link6_collision_4.obj" name="link6_collision_4"/>
+    <mesh file="arx_gripper/link6/link6.obj" name="link6"/>
+    <mesh file="arx_gripper/link6/link6_collision_0.obj" name="link6_collision_0" scale="0.8 0.58 0.8"/>
+    <mesh file="arx_gripper/link6/link6_collision_1.obj" name="link6_collision_1"/>
+    <mesh file="arx_gripper/link6/link6_collision_2.obj" name="link6_collision_2"/>
+    <mesh file="arx_gripper/link6/link6_collision_3.obj" name="link6_collision_3"/>
+    <mesh file="arx_gripper/link6/link6_collision_4.obj" name="link6_collision_4"/>
 
     <!-- link7 -->
-    <mesh file="meshes/arx_gripper/link7/link7.obj" name="link7"/>
-    <mesh file="meshes/arx_gripper/link7/link7_collision_0.obj" name="link7_collision_0"/>
-    <mesh file="meshes/arx_gripper/link7/link7_collision_1.obj" name="link7_collision_1"/>
-    <mesh file="meshes/arx_gripper/link7/link7_collision_2.obj" name="link7_collision_2"/>
-    <mesh file="meshes/arx_gripper/link7/link7_collision_3.obj" name="link7_collision_3"/>
-    <mesh file="meshes/arx_gripper/link7/link7_collision_4.obj" name="link7_collision_4"/>
+    <mesh file="arx_gripper/link7/link7.obj" name="link7"/>
+    <mesh file="arx_gripper/link7/link7_collision_0.obj" name="link7_collision_0"/>
+    <mesh file="arx_gripper/link7/link7_collision_1.obj" name="link7_collision_1"/>
+    <mesh file="arx_gripper/link7/link7_collision_2.obj" name="link7_collision_2"/>
+    <mesh file="arx_gripper/link7/link7_collision_3.obj" name="link7_collision_3"/>
+    <mesh file="arx_gripper/link7/link7_collision_4.obj" name="link7_collision_4"/>
 
     <!-- link8 -->
-    <mesh file="meshes/arx_gripper/link8/link8.obj" name="link8"/>
-    <mesh file="meshes/arx_gripper/link8/link8_collision_0.obj" name="link8_collision_0"/>
-    <mesh file="meshes/arx_gripper/link8/link8_collision_1.obj" name="link8_collision_1"/>
-    <mesh file="meshes/arx_gripper/link8/link8_collision_2.obj" name="link8_collision_2"/>
-    <mesh file="meshes/arx_gripper/link8/link8_collision_3.obj" name="link8_collision_3"/>
-    <mesh file="meshes/arx_gripper/link8/link8_collision_4.obj" name="link8_collision_4"/>
+    <mesh file="arx_gripper/link8/link8.obj" name="link8"/>
+    <mesh file="arx_gripper/link8/link8_collision_0.obj" name="link8_collision_0"/>
+    <mesh file="arx_gripper/link8/link8_collision_1.obj" name="link8_collision_1"/>
+    <mesh file="arx_gripper/link8/link8_collision_2.obj" name="link8_collision_2"/>
+    <mesh file="arx_gripper/link8/link8_collision_3.obj" name="link8_collision_3"/>
+    <mesh file="arx_gripper/link8/link8_collision_4.obj" name="link8_collision_4"/>
 
   </asset>
   <default>

@@ -19,7 +19,7 @@ class ArxGripperBase(GripperModel):
     """
 
     def __init__(self, idn=0):
-        super().__init__(robosuite_model_path_completion("grippers/arx_gripper.xml"), idn=idn)
+        super().__init__(robosuite_model_path_completion("grippers/arx/arx_gripper.xml"), idn=idn)
 
     def format_action(self, action):
         return action
@@ -94,7 +94,7 @@ class ArxX7GripperBase(GripperModel):
     """
 
     def __init__(self, idn=0):
-        super().__init__(robosuite_model_path_completion("grippers/arx_x7_gripper.xml"), idn=idn)
+        super().__init__(robosuite_model_path_completion("grippers/arx/arx_x7_gripper.xml"), idn=idn)
 
     def format_action(self, action):
         return action

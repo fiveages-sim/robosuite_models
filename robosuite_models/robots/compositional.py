@@ -323,7 +323,7 @@ class ArxLift2(ArxX5Dual):
 
 
 @register_robot_class("WheeledRobot")
-class ArxX7S(ArxX7sArmsOnly):
+class ArxX7s(ArxX7sArmsOnly):
     @property
     def default_base(self):
         return "ArxX7sBase"
@@ -346,4 +346,30 @@ class ArxX7S(ArxX7sArmsOnly):
             "bins": (-0.6, -0.1, 0),
             "empty": (-0.6, 0, 0),
             "table": lambda table_length: (-0.3 - table_length / 2, 0, 0),
+        }
+
+@register_robot_class("WheeledRobot")
+class SO101Omron(SO101):
+    @property
+    def default_base(self):
+        return "OmronMobileBase"
+
+    @property
+    def default_arms(self):
+        return {"right": "SO101"}
+
+    @property
+    def init_qpos(self):
+        return np.array([0.0, -1.57, 1.57, 0, 0.0])
+
+    @property
+    def init_torso_qpos(self):
+        return np.array([0.2])
+
+    @property
+    def base_xpos_offset(self):
+        return {
+            "bins": (-0.6, -0.1, 0),
+            "empty": (-0.6, 0, 0),
+            "table": lambda table_length: (-0.16 - table_length / 2, 0, 0),
         }
