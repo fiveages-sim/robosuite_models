@@ -1,186 +1,96 @@
-"""Teleoperate robot with keyboard or SpaceMouse.
+"""Teleoperate robot with keyboard or SpaceMouse using draccus configuration.
 
-***Choose user input option with the --device argument***
+This is a refactored version of teleop_robosuite.py that uses draccus + dataclass
+for configuration management instead of argparse.
 
-Keyboard:
-    We use the keyboard to control the end-effector of the robot.
-    The keyboard provides 6-DoF control commands through various keys.
-    The commands are mapped to joint velocities through an inverse kinematics
-    solver from Bullet physics.
+Usage examples:
+    # Basic usage
+    python teleop_robosuite_draccus.py --env.environment Lift --device.type spacemouse
 
-    Note:
-        To run this script with macOS, you must run it with root access.
+    # Two-arm environment
+    python teleop_robosuite_draccus.py --env.environment TwoArmLift --env.robots Baxter --env.config bimanual --env.arm left
 
-SpaceMouse:
-
-    We use the SpaceMouse 3D mouse to control the end-effector of the robot.
-    The mouse provides 6-DoF control commands. The commands are mapped to joint
-    velocities through an inverse kinematics solver from Bullet physics.
-
-    The two side buttons of SpaceMouse are used for controlling the grippers.
-
-    SpaceMouse Wireless from 3Dconnexion: https://www.3dconnexion.com/spacemouse_wireless/en/
-    We used the SpaceMouse Wireless in our experiments. The paper below used the same device
-    to collect human demonstrations for imitation learning.
-
-    Reinforcement and Imitation Learning for Diverse Visuomotor Skills
-    Yuke Zhu, Ziyu Wang, Josh Merel, Andrei Rusu, Tom Erez, Serkan Cabi, Saran Tunyasuvunakool,
-    János Kramár, Raia Hadsell, Nando de Freitas, Nicolas Heess
-    RSS 2018
-
-    Note:
-        This current implementation only supports macOS (Linux support can be added).
-        Download and install the driver before running the script:
-            https://www.3dconnexion.com/service/drivers.html
-
-Additionally, --pos_sensitivity and --rot_sensitivity provide relative gains for increasing / decreasing the user input
-device sensitivity
-
-
-***Choose controller with the --controller argument***
-
-Choice of using either inverse kinematics controller (ik) or operational space controller (osc):
-Main difference is that user inputs with ik's rotations are always taken relative to eef coordinate frame, whereas
-    user inputs with osc's rotations are taken relative to global frame (i.e.: static / camera frame of reference).
-
-
-***Choose environment specifics with the following arguments***
-
-    --environment: Task to perform, e.g.: "Lift", "TwoArmPegInHole", "NutAssembly", etc.
-
-    --robots: Robot(s) with which to perform the task. Can be any in
-        {"Panda", "Sawyer", "IIWA", "Jaco", "Kinova3", "UR5e", "Baxter"}. Note that the environments include sanity
-        checks, such that a "TwoArm..." environment will only accept either a 2-tuple of robot names or a single
-        bimanual robot name, according to the specified configuration (see below), and all other environments will
-        only accept a single single-armed robot name
-
-    --config: Exclusively applicable and only should be specified for "TwoArm..." environments. Specifies the robot
-        configuration desired for the task. Options are {"parallel" and "opposed"}
-
-            -"parallel": Sets up the environment such that two robots are stationed next to
-                each other facing the same direction. Expects a 2-tuple of robot names to be specified
-                in the --robots argument.
-
-            -"opposed": Sets up the environment such that two robots are stationed opposed from
-                each other, facing each other from opposite directions. Expects a 2-tuple of robot names
-                to be specified in the --robots argument.
-
-    --arm: Exclusively applicable and only should be specified for "TwoArm..." environments. Specifies which of the
-        multiple arm eef's to control. The other (passive) arm will remain stationary. Options are {"right", "left"}
-        (from the point of view of the robot(s) facing against the viewer direction)
-
-    --switch-on-grasp: Exclusively applicable and only should be specified for "TwoArm..." environments. If enabled,
-        will switch the current arm being controlled every time the gripper input is pressed
-
-    --toggle-camera-on-grasp: If enabled, gripper input presses will cycle through the available camera angles
-
-Examples:
-
-    For normal single-arm environment:
-        $ python demo_device_control.py --environment PickPlaceCan --robots Sawyer --controller osc
-
-    For two-arm bimanual environment:
-        $ python demo_device_control.py --environment TwoArmLift --robots Baxter --config bimanual --arm left --controller osc
-
-    For two-arm multi single-arm robot environment:
-        $ python demo_device_control.py --environment TwoArmLift --robots Sawyer Sawyer --config parallel --controller osc
-
-
+    # Custom sensitivity
+    python teleop_robosuite_draccus.py --device.pos_sensitivity 2.0 --device.rot_sensitivity 1.5
 """
 
-import argparse
 import time
+from dataclasses import dataclass, field
+from typing import List, Optional, Union
 
+import draccus
 import numpy as np
+from lerobot.teleoperators import (so101_leader, TeleoperatorConfig)
 
 import robosuite as suite
 from robosuite import load_composite_controller_config
 from robosuite.controllers.composite.composite_controller import WholeBody
 from robosuite.wrappers import VisualizationWrapper
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--environment", type=str, default="Lift")
-    parser.add_argument(
-        "--robots",
-        nargs="+",
-        type=str,
-        default="Panda",
-        help="Which robot(s) to use in the env",
-    )
-    parser.add_argument(
-        "--config",
-        type=str,
-        default="default",
-        help="Specified environment configuration if necessary",
-    )
-    parser.add_argument(
-        "--arm",
-        type=str,
-        default="right",
-        help="Which arm to control (eg bimanual) 'right' or 'left'",
-    )
-    parser.add_argument(
-        "--switch-on-grasp",
-        action="store_true",
-        help="Switch gripper control on gripper action",
-    )
-    parser.add_argument(
-        "--toggle-camera-on-grasp",
-        action="store_true",
-        help="Switch camera angle on gripper action",
-    )
-    parser.add_argument(
-        "--controller",
-        type=str,
-        default=None,
-        help="Choice of controller. Can be generic (eg. 'BASIC' or 'WHOLE_BODY_MINK_IK') or json file (see robosuite/controllers/config for examples) or None to get the robot's default controller if it exists",
-    )
-    parser.add_argument("--device", type=str, default="spacemouse")
-    parser.add_argument(
-        "--pos-sensitivity",
-        type=float,
-        default=1.0,
-        help="How much to scale position user inputs",
-    )
-    parser.add_argument(
-        "--rot-sensitivity",
-        type=float,
-        default=1.0,
-        help="How much to scale rotation user inputs",
-    )
-    parser.add_argument(
-        "--max_fr",
-        default=20,
-        type=int,
-        help="Sleep when simluation runs faster than specified frame rate; 20 fps is real time.",
-    )
-    parser.add_argument(
-        "--reverse_xy",
-        type=bool,
-        default=False,
-        help="(DualSense Only)Reverse the effect of the x and y axes of the joystick.It is used to handle the case that the left/right and front/back sides of the view are opposite to the LX and LY of the joystick(Push LX up but the robot move left in your view)",
-    )
-    args = parser.parse_args()
+
+@dataclass
+class EnvironmentConfig:
+    """Environment-related configuration."""
+    environment: str = "Lift"
+    robots: Union[str, List[str]] = "Panda"
+    config: str = "default"
+    arm: str = "right"
+    switch_on_grasp: bool = False
+    toggle_camera_on_grasp: bool = False
+
+
+@dataclass
+class DeviceConfig:
+    """Device-related configuration."""
+    teleoperator: TeleoperatorConfig = field(default_factory=TeleoperatorConfig)
+    type: str = "spacemouse"  # spacemouse, keyboard, dualsense, mjgui
+    pos_sensitivity: float = 1.0
+    rot_sensitivity: float = 1.0
+    reverse_xy: bool = False
+
+
+@dataclass
+class ControllerConfig:
+    """Controller-related configuration."""
+    controller: Optional[str] = None
+
+
+@dataclass
+class RenderConfig:
+    """Rendering and performance configuration."""
+    max_fr: int = 20
+
+
+@dataclass
+class TeleopConfig:
+    """Main teleop configuration."""
+    env: EnvironmentConfig = field(default_factory=EnvironmentConfig)
+    device: DeviceConfig = field(default_factory=DeviceConfig)
+    control: ControllerConfig = field(default_factory=ControllerConfig)
+    render: RenderConfig = field(default_factory=RenderConfig)
+
+
+def setup_environment(env_config: EnvironmentConfig, control_config: ControllerConfig):
+    """Setup the robosuite environment based on configuration."""
+    # Handle robots parameter - convert to list if string
+    robots = env_config.robots if isinstance(env_config.robots, list) else [env_config.robots]
 
     # Get controller config
     controller_config = load_composite_controller_config(
-        controller=args.controller,
-        robot=args.robots[0],
+        controller=control_config.controller,
+        robot=robots[0],
     )
 
     # Create argument configuration
     config = {
-        "env_name": args.environment,
-        "robots": args.robots,
+        "env_name": env_config.environment,
+        "robots": robots,
         "controller_configs": controller_config,
     }
 
     # Check if we're using a multi-armed environment and use env_configuration argument if so
-    if "TwoArm" in args.environment:
-        config["env_configuration"] = args.config
-    else:
-        args.config = None
+    if "TwoArm" in env_config.environment:
+        config["env_configuration"] = env_config.config
 
     # Create environment
     env = suite.make(
@@ -198,43 +108,49 @@ if __name__ == "__main__":
     # Wrap this environment in a visualization wrapper
     env = VisualizationWrapper(env, indicator_configs=None)
 
-    # Setup printing options for numbers
-    np.set_printoptions(formatter={"float": lambda x: "{0:0.3f}".format(x)})
+    return env
 
-    # initialize device
-    if args.device == "keyboard":
+
+def setup_device(device_config: DeviceConfig, env):
+    """Setup the input device based on configuration."""
+    if device_config.type == "keyboard":
         from robosuite.devices import Keyboard
-
         device = Keyboard(
             env=env,
-            pos_sensitivity=args.pos_sensitivity,
-            rot_sensitivity=args.rot_sensitivity,
+            pos_sensitivity=device_config.pos_sensitivity,
+            rot_sensitivity=device_config.rot_sensitivity,
         )
         env.viewer.add_keypress_callback(device.on_press)
-    elif args.device == "spacemouse":
+    elif device_config.type == "spacemouse":
         from robosuite.devices import SpaceMouse
-
         device = SpaceMouse(
             env=env,
-            pos_sensitivity=args.pos_sensitivity,
-            rot_sensitivity=args.rot_sensitivity,
+            pos_sensitivity=device_config.pos_sensitivity,
+            rot_sensitivity=device_config.rot_sensitivity,
         )
-    elif args.device == "dualsense":
+    elif device_config.type == "dualsense":
         from robosuite.devices import DualSense
-
         device = DualSense(
             env=env,
-            pos_sensitivity=args.pos_sensitivity,
-            rot_sensitivity=args.rot_sensitivity,
-            reverse_xy=args.reverse_xy,
+            pos_sensitivity=device_config.pos_sensitivity,
+            rot_sensitivity=device_config.rot_sensitivity,
+            reverse_xy=device_config.reverse_xy,
         )
-    elif args.device == "mjgui":
+    elif device_config.type == "mjgui":
         from robosuite.devices.mjgui import MJGUI
-
         device = MJGUI(env=env)
+    elif device_config.type == "lerobot_lead":
+        from robosuite.devices.lerobot_lead import LeRobotLead
+        device = LeRobotLead(env=env, teleoperator=device_config.teleoperator)
     else:
-        raise Exception("Invalid device choice: choose either 'keyboard', 'dualsene' or 'spacemouse'.")
+        raise ValueError(
+            f"Invalid device choice: {device_config.type}. Choose 'keyboard', 'dualsense', 'spacemouse', or 'mjgui'.")
 
+    return device
+
+
+def teleop_loop(env, device, env_config: EnvironmentConfig, render_config: RenderConfig):
+    """Main teleoperation loop."""
     while True:
         # Reset the environment
         obs = env.reset()
@@ -273,11 +189,11 @@ if __name__ == "__main__":
                 break
 
             from copy import deepcopy
+            action_dict = deepcopy(input_ac_dict)
 
-            action_dict = deepcopy(input_ac_dict)  # {}
             # set arm actions
             for arm in active_robot.arms:
-                if isinstance(active_robot.composite_controller, WholeBody):  # input type passed to joint_action_policy
+                if isinstance(active_robot.composite_controller, WholeBody):
                     controller_input_type = active_robot.composite_controller.joint_action_policy.input_type
                 else:
                     controller_input_type = active_robot.part_controllers[arm].input_type
@@ -287,7 +203,7 @@ if __name__ == "__main__":
                 elif controller_input_type == "absolute":
                     action_dict[arm] = input_ac_dict[f"{arm}_abs"]
                 else:
-                    raise ValueError
+                    raise ValueError(f"Unknown controller input type: {controller_input_type}")
 
             # Maintain gripper state for each robot but only update the active robot with action
             env_action = [robot.create_action_vector(all_prev_gripper_actions[i]) for i, robot in enumerate(env.robots)]
@@ -300,8 +216,41 @@ if __name__ == "__main__":
             env.render()
 
             # limit frame rate if necessary
-            if args.max_fr is not None:
+            if render_config.max_fr is not None:
                 elapsed = time.time() - start
-                diff = 1 / args.max_fr - elapsed
+                diff = 1 / render_config.max_fr - elapsed
                 if diff > 0:
                     time.sleep(diff)
+
+
+@draccus.wrap()
+def main(cfg: TeleopConfig):
+    """Main function with draccus configuration."""
+    print("Teleoperation Configuration:")
+    print(f"  Environment: {cfg.env.environment}")
+    print(f"  Robots: {cfg.env.robots}")
+    print(f"  Device: {cfg.device.type}")
+    print(f"  Controller: {cfg.control.controller}")
+    print()
+
+    # Setup printing options for numbers
+    np.set_printoptions(formatter={"float": lambda x: "{0:0.3f}".format(x)})
+
+    # Setup environment
+    env = setup_environment(cfg.env, cfg.control)
+
+    # Setup device
+    device = setup_device(cfg.device, env)
+
+    try:
+        # Start teleoperation loop
+        teleop_loop(env, device, cfg.env, cfg.render)
+    except KeyboardInterrupt:
+        print("\nTeleoperation interrupted by user.")
+    finally:
+        if hasattr(device, 'disconnect'):
+            device.disconnect()
+
+
+if __name__ == "__main__":
+    main()

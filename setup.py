@@ -14,7 +14,7 @@ long_description = "".join(lines)
 setup(
     name="robosuite_models",
     packages=[package for package in find_packages() if package.startswith("robosuite_models")],
-    install_requires=["mujoco>=3.2.0", "robosuite>=1.5.0"],
+    install_requires=["mujoco>=3.3.0", "robosuite>=1.5.0", "draccus>=0.3.0"],
     eager_resources=["*"],
     include_package_data=True,
     python_requires=">=3",

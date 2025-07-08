@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../robocasa/.idea/robocasa.iml" filepath="$PROJECT_DIR$/../robocasa/.idea/robocasa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../robosuite/.idea/robosuite.iml" filepath="$PROJECT_DIR$/../robosuite/.idea/robosuite.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/robosuite_models.iml" filepath="$PROJECT_DIR$/.idea/robosuite_models.iml" />
     </modules>
   </component>

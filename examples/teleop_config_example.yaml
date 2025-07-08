@@ -1,0 +1,22 @@
+# Example configuration file for teleop_robosuite_draccus.py
+# Usage: python teleop_robosuite.py --config teleop_config_example.yaml
+
+env:
+  environment: "Lift"           # Task environment (Lift, PickPlaceCan, Door, etc.)
+  robots: "SO101"              # Robot type(s) - can be string or list
+  config: "default"            # Environment configuration
+  arm: "right"                 # Which arm to control for bimanual robots
+  switch_on_grasp: false       # Switch active arm when gripper is used
+  toggle_camera_on_grasp: false # Toggle camera view when gripper is used
+
+device:
+  type: "spacemouse"           # Input device: spacemouse, keyboard, dualsense, mjgui
+  pos_sensitivity: 1.0         # Position control sensitivity multiplier
+  rot_sensitivity: 1.0         # Rotation control sensitivity multiplier
+  reverse_xy: false            # Reverse X/Y axes (DualSense only)
+
+control:
+  controller: null             # Controller type (null for robot default)
+
+render:
+  max_fr: 20                   # Maximum frame rate (20 fps = real time) 

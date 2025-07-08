@@ -6,6 +6,8 @@
     </content>
     <orderEntry type="jdk" jdkName="robocasa" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="robosuite" />
+    <orderEntry type="module" module-name="robocasa" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
