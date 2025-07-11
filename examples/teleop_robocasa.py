@@ -144,8 +144,6 @@ if __name__ == "__main__":
             env=env,
             pos_sensitivity=1.0,
             rot_sensitivity=1.0,
-            vendor_id=macros.SPACEMOUSE_VENDOR_ID,
-            product_id=macros.SPACEMOUSE_PRODUCT_ID,
         )
     else:
         raise ValueError

@@ -1,76 +1,114 @@
-"""Teleoperate robot with keyboard or SpaceMouse using draccus configuration.
+"""Unified teleoperation and data collection script using draccus configuration.
 
-This is a refactored version of teleop_robosuite.py that uses draccus + dataclass
-for configuration management instead of argparse.
+This script combines teleoperation and data collection functionality. Use the 
+--collection.enabled flag to enable data collection during teleoperation.
 
 Usage examples:
-    # Basic usage
-    python teleop_robosuite_draccus.py --env.environment Lift --device.type spacemouse
+    # Basic teleoperation only
+    python teleop_robosuite.py --env.environment Lift --device.type spacemouse
 
-    # Two-arm environment
-    python teleop_robosuite_draccus.py --env.environment TwoArmLift --env.robots Baxter --env.config bimanual --env.arm left
+    # Teleoperation with data collection
+    python teleop_robosuite.py --env.environment Lift --device.type spacemouse --collection.enabled true
 
-    # Custom sensitivity
-    python teleop_robosuite_draccus.py --device.pos_sensitivity 2.0 --device.rot_sensitivity 1.5
+    # Two-arm environment with data collection
+    python teleop_robosuite.py --env.environment TwoArmLift --env.robots Baxter --env.config bimanual --collection.enabled true
+
+    # Custom settings with data collection
+    python teleop_robosuite.py --device.pos_sensitivity 2.0 --collection.enabled true --collection.directory /path/to/demos
 """
 
+import datetime
+import json
+import os
+import shutil
 import time
-from dataclasses import dataclass, field
-from typing import List, Optional, Union
+from copy import deepcopy
+from glob import glob
 
 import draccus
+import h5py
 import numpy as np
-from lerobot.teleoperators import (so101_leader, TeleoperatorConfig)
 
 import robosuite as suite
 from robosuite import load_composite_controller_config
 from robosuite.controllers.composite.composite_controller import WholeBody
-from robosuite.wrappers import VisualizationWrapper
+from robosuite.wrappers import VisualizationWrapper, DataCollectionWrapper
+
+from config import TeleopConfig
 
 
-@dataclass
-class EnvironmentConfig:
-    """Environment-related configuration."""
-    environment: str = "Lift"
-    robots: Union[str, List[str]] = "Panda"
-    config: str = "default"
-    arm: str = "right"
-    switch_on_grasp: bool = False
-    toggle_camera_on_grasp: bool = False
+def gather_demonstrations_as_hdf5(directory, out_dir, env_info):
+    """
+    Gathers the demonstrations saved in @directory into a single hdf5 file.
+    
+    Args:
+        directory (str): Path to the directory containing raw demonstrations.
+        out_dir (str): Path to where to store the hdf5 file.
+        env_info (str): JSON-encoded string containing environment information.
+    """
+    hdf5_path = os.path.join(out_dir, "demo.hdf5")
+    f = h5py.File(hdf5_path, "w")
+
+    # store some metadata in the attributes of one group
+    grp = f.create_group("data")
+
+    num_eps = 0
+    env_name = None  # will get populated at some point
+
+    for ep_directory in os.listdir(directory):
+        state_paths = os.path.join(directory, ep_directory, "state_*.npz")
+        states = []
+        actions = []
+        success = False
+
+        for state_file in sorted(glob(state_paths)):
+            dic = np.load(state_file, allow_pickle=True)
+            env_name = str(dic["env"])
+
+            states.extend(dic["states"])
+            for ai in dic["action_infos"]:
+                actions.append(ai["actions"])
+            success = success or dic["successful"]
+
+        if len(states) == 0:
+            continue
+
+        # Add only the successful demonstration to dataset
+        if success:
+            print("Demonstration is successful and has been saved")
+            # Delete the last state. This is because when the DataCollector wrapper
+            # recorded the states and actions, the states were recorded AFTER playing that action,
+            # so we end up with an extra state at the end.
+            del states[-1]
+            assert len(states) == len(actions)
+
+            num_eps += 1
+            ep_data_grp = grp.create_group("demo_{}".format(num_eps))
+
+            # store model xml as an attribute
+            xml_path = os.path.join(directory, ep_directory, "model.xml")
+            with open(xml_path, "r") as f:
+                xml_str = f.read()
+            ep_data_grp.attrs["model_file"] = xml_str
+
+            # write datasets for states and actions
+            ep_data_grp.create_dataset("states", data=np.array(states))
+            ep_data_grp.create_dataset("actions", data=np.array(actions))
+        else:
+            print("Demonstration is unsuccessful and has NOT been saved")
+
+    # write dataset attributes (metadata)
+    now = datetime.datetime.now()
+    grp.attrs["date"] = "{}-{}-{}".format(now.month, now.day, now.year)
+    grp.attrs["time"] = "{}:{}:{}".format(now.hour, now.minute, now.second)
+    grp.attrs["repository_version"] = suite.__version__
+    grp.attrs["env"] = env_name
+    grp.attrs["env_info"] = env_info
+
+    f.close()
 
 
-@dataclass
-class DeviceConfig:
-    """Device-related configuration."""
-    teleoperator: TeleoperatorConfig = field(default_factory=TeleoperatorConfig)
-    type: str = "spacemouse"  # spacemouse, keyboard, dualsense, mjgui
-    pos_sensitivity: float = 1.0
-    rot_sensitivity: float = 1.0
-    reverse_xy: bool = False
-
-
-@dataclass
-class ControllerConfig:
-    """Controller-related configuration."""
-    controller: Optional[str] = None
-
-
-@dataclass
-class RenderConfig:
-    """Rendering and performance configuration."""
-    max_fr: int = 20
-
-
-@dataclass
-class TeleopConfig:
-    """Main teleop configuration."""
-    env: EnvironmentConfig = field(default_factory=EnvironmentConfig)
-    device: DeviceConfig = field(default_factory=DeviceConfig)
-    control: ControllerConfig = field(default_factory=ControllerConfig)
-    render: RenderConfig = field(default_factory=RenderConfig)
-
-
-def setup_environment(env_config: EnvironmentConfig, control_config: ControllerConfig):
+def setup_environment(env_config, control_config, render_config, collection_config):
     """Setup the robosuite environment based on configuration."""
     # Handle robots parameter - convert to list if string
     robots = env_config.robots if isinstance(env_config.robots, list) else [env_config.robots]
@@ -81,37 +119,49 @@ def setup_environment(env_config: EnvironmentConfig, control_config: ControllerC
         robot=robots[0],
     )
 
+    if controller_config["type"] == "WHOLE_BODY_MINK_IK":
+        # mink-specific import. requires installing mink
+        from robosuite.examples.third_party_controller.mink_controller import WholeBodyMinkIK
+
     # Create argument configuration
     config = {
         "env_name": env_config.environment,
         "robots": robots,
-        "controller_configs": controller_config,
+        "controller_configs": controller_config
     }
 
     # Check if we're using a multi-armed environment and use env_configuration argument if so
     if "TwoArm" in env_config.environment:
         config["env_configuration"] = env_config.config
+    
+    if env_config.translucent_robot:
+        config["translucent_robot"] = True
 
     # Create environment
     env = suite.make(
         **config,
-        has_renderer=True,
-        has_offscreen_renderer=False,
-        render_camera="agentview",
+        has_renderer=render_config.has_renderer,
+        has_offscreen_renderer=render_config.has_offscreen_renderer,
+        render_camera=render_config.camera,
         ignore_done=True,
-        use_camera_obs=False,
+        use_camera_obs=render_config.use_camera_obs,
         reward_shaping=True,
         control_freq=20,
-        hard_reset=False,
     )
 
     # Wrap this environment in a visualization wrapper
     env = VisualizationWrapper(env, indicator_configs=None)
 
-    return env
+    # Setup data collection if enabled
+    tmp_directory = None
+    if collection_config.enabled:
+        tmp_directory = "/tmp/{}".format(str(time.time()).replace(".", "_"))
+        env = DataCollectionWrapper(env, tmp_directory)
+
+    return env, config, tmp_directory
 
 
-def setup_device(device_config: DeviceConfig, env):
+def setup_device(device_config, env):
     """Setup the input device based on configuration."""
     if device_config.type == "keyboard":
         from robosuite.devices import Keyboard
@@ -149,22 +199,40 @@ def setup_device(device_config: DeviceConfig, env):
     return device
 
 
-def teleop_loop(env, device, env_config: EnvironmentConfig, render_config: RenderConfig):
-    """Main teleoperation loop."""
+def teleop_loop(env, device, env_config, render_config, collection_config, tmp_directory, env_info):
+    """Main teleoperation loop with optional data collection."""
+    # Setup data collection directory if enabled
+    if collection_config.enabled:
+        if collection_config.directory is None:
+            # Use default directory with timestamp when none specified
+            t1, t2 = str(time.time()).split(".")
+            base_dir = os.path.join(suite.models.assets_root, "demonstrations_private")
+            new_dir = os.path.join(base_dir, "{}_{}".format(t1, t2))
+        else:
+            # Use specified directory directly when provided
+            new_dir = collection_config.directory
+        
+        # Remove existing directory if it has content
+        if os.path.exists(new_dir) and os.listdir(new_dir):
+            print(f"Directory {new_dir} exists and has content. Removing it...")
+            shutil.rmtree(new_dir)
+        
+        os.makedirs(new_dir, exist_ok=True)
+        print(f"Data collection enabled. Saving to: {new_dir}")
+
     while True:
         # Reset the environment
-        obs = env.reset()
-
-        # Setup rendering
-        cam_id = 0
-        num_cam = len(env.sim.model.camera_names)
+        env.reset()
         env.render()
 
-        # Initialize variables that should the maintained between resets
-        last_grasp = 0
+        task_completion_hold_count = -1  # counter for data collection
 
         # Initialize device control
         device.start_control()
+
+        for robot in env.robots:
+            robot.print_action_info_dict()
+
         all_prev_gripper_actions = [
             {
                 f"{robot_arm}_gripper": np.repeat([0], robot.gripper[robot_arm].dof)
@@ -182,13 +250,12 @@ def teleop_loop(env, device, env_config: EnvironmentConfig, render_config: Rende
             active_robot = env.robots[device.active_robot]
 
             # Get the newest action
-            input_ac_dict = device.input2action()
+            input_ac_dict = device.input2action(mirror_actions=env_config.mirror_actions)
 
             # If action is none, then this a reset so we should break
             if input_ac_dict is None:
                 break
 
-            from copy import deepcopy
             action_dict = deepcopy(input_ac_dict)
 
             # set arm actions
@@ -215,6 +282,21 @@ def teleop_loop(env, device, env_config: EnvironmentConfig, render_config: Rende
             env.step(env_action)
             env.render()
 
+            # Handle data collection task completion check
+            if collection_config.enabled:
+                # Also break if we complete the task (for data collection)
+                if task_completion_hold_count == 0:
+                    break
+
+                # state machine to check for having a success for 10 consecutive timesteps
+                if env._check_success():
+                    if task_completion_hold_count > 0:
+                        task_completion_hold_count -= 1  # latched state, decrement count
+                    else:
+                        task_completion_hold_count = 10  # reset count on first success timestep
+                else:
+                    task_completion_hold_count = -1  # null the counter if there's no success
+
             # limit frame rate if necessary
             if render_config.max_fr is not None:
                 elapsed = time.time() - start
@@ -222,29 +304,40 @@ def teleop_loop(env, device, env_config: EnvironmentConfig, render_config: Rende
                 if diff > 0:
                     time.sleep(diff)
 
+        # cleanup for end of data collection episodes
+        if collection_config.enabled:
+            env.close()
+            gather_demonstrations_as_hdf5(tmp_directory, new_dir, env_info)
+
 
 @draccus.wrap()
 def main(cfg: TeleopConfig):
     """Main function with draccus configuration."""
-    print("Teleoperation Configuration:")
+    print("Unified Teleoperation & Data Collection Configuration:")
     print(f"  Environment: {cfg.env.environment}")
     print(f"  Robots: {cfg.env.robots}")
     print(f"  Device: {cfg.device.type}")
     print(f"  Controller: {cfg.control.controller}")
+    print(f"  Data Collection: {'Enabled' if cfg.collection.enabled else 'Disabled'}")
+    if cfg.collection.enabled:
+        print(f"  Collection Directory: {cfg.collection.directory}")
     print()
 
     # Setup printing options for numbers
     np.set_printoptions(formatter={"float": lambda x: "{0:0.3f}".format(x)})
 
     # Setup environment
-    env = setup_environment(cfg.env, cfg.control)
+    env, env_config_dict, tmp_directory = setup_environment(cfg.env, cfg.control, cfg.render, cfg.collection)
+
+    # Convert environment config to json for data collection
+    env_info = json.dumps(env_config_dict) if cfg.collection.enabled else None
 
     # Setup device
     device = setup_device(cfg.device, env)
 
     try:
-        # Start teleoperation loop
-        teleop_loop(env, device, cfg.env, cfg.render)
+        # Start teleoperation loop (with optional data collection)
+        teleop_loop(env, device, cfg.env, cfg.render, cfg.collection, tmp_directory, env_info)
     except KeyboardInterrupt:
         print("\nTeleoperation interrupted by user.")
     finally:
