@@ -1,11 +1,11 @@
 <mujoco model="cr5_robot">
   <compiler angle="radian"/>
   <asset>
-    <material name="dark" specular="0.0" shininess="0.25" rgba="0.650000 0.650000 0.650000 1.000000"/>
+    <material name="grey" specular="0.0" shininess="0.25" rgba="0.650000 0.650000 0.650000 1.000000"/>
     <material name="white" specular="0.0" shininess="0.25" rgba="1.000000 1.000000 1.000000 1.000000"/>
-    <material name="black" specular="0.5" shininess="0.25" rgba="0.100000 0.100000 0.100000 1.000000"/>
-    <material name="white.006" specular="0.0" shininess="0.25" rgba="0.800000 0.800000 0.800000 1.000000"/>
+    <material name="black" specular="0.5" shininess="0.25" rgba="0.050000 0.050000 0.050000 1.000000"/>
     <material name="blue" specular="0.5" shininess="0.25" rgba="0.004566 0.013623 0.801032 1.000000"/>
+    <material name="green" specular="0.5" shininess="0.25" rgba="0.004582 0.801802 0.000000 1.000000"/>
 
     <!-- base link -->
     <mesh name="base_link_0" file="meshes/base_link/base_link_0.obj"/>
@@ -34,8 +34,7 @@
     <!-- Link3 -->
     <mesh name="Link3_0" file="meshes/Link3/Link3_0.obj"/>
     <mesh name="Link3_1" file="meshes/Link3/Link3_1.obj"/>
-    <mesh name="Link3_2" file="meshes/Link3/Link3_2.obj" inertia="shell"/>
-    <mesh name="Link3_3" file="meshes/Link3/Link3_3.obj"/>
+    <mesh name="Link3_2" file="meshes/Link3/Link3_2.obj"/>
     <mesh name="Link3_collision_0" file="meshes/Link3/Link3_collision_0.obj"/>
     <mesh name="Link3_collision_1" file="meshes/Link3/Link3_collision_1.obj"/>
     <mesh name="Link3_collision_2" file="meshes/Link3/Link3_collision_2.obj"/>
@@ -49,9 +48,12 @@
     <mesh name="Link4_collision_2" file="meshes/Link4/Link4_collision_2.obj"/>
 
     <!-- Link5 -->
-    <mesh name="Link5_0" file="meshes/Link5/Link5_0.obj"/>
+    <mesh name="Link5_0" file="meshes/Link5/Link5_0.obj" inertia="shell"/>
     <mesh name="Link5_1" file="meshes/Link5/Link5_1.obj"/>
     <mesh name="Link5_2" file="meshes/Link5/Link5_2.obj"/>
+    <mesh name="Link5_3" file="meshes/Link5/Link5_3.obj"/>
+    <mesh name="Link5_4" file="meshes/Link5/Link5_4.obj"/>
+
     <mesh name="Link5_collision_0" file="meshes/Link5/Link5_collision_0.obj"/>
     <mesh name="Link5_collision_1" file="meshes/Link5/Link5_collision_1.obj"/>
     <mesh name="Link5_collision_2" file="meshes/Link5/Link5_collision_2.obj"/>
@@ -91,7 +93,7 @@
         <site name="right_center" pos="0 0 0" size="0.01" rgba="1 0.3 0.3 1" group="2"/>
 
         <geom mesh="base_link_0" material="black" class="visual" quat="0.7071 0 0 0.7071"/>
-        <geom mesh="base_link_1" material="dark" class="visual" quat="0.7071 0 0 0.7071"/>
+        <geom mesh="base_link_1" material="grey" class="visual" quat="0.7071 0 0 0.7071"/>
         <geom mesh="base_link_collision_0" rgba="0.30677212495667794 0.4011181920616007 0.9064821479358571 1"
               class="collision" quat="0.7071 0 0 0.7071"/>
         <geom mesh="base_link_collision_1" rgba="0.9468307314117564 0.9180780616964244 0.3041174607554856 1"
@@ -105,8 +107,8 @@
           <joint name="joint1" pos="0 0 0" axis="0 0 1" range="-6.28318 6.28318" limited="true" damping="0.1"/>
 
           <geom mesh="Link1_0" material="blue" class="visual"/>
-          <geom mesh="Link1_1" material="white.006" class="visual"/>
-          <geom mesh="Link1_2" material="dark" class="visual"/>
+          <geom mesh="Link1_1" material="grey" class="visual"/>
+          <geom mesh="Link1_2" material="grey" class="visual"/>
           <geom mesh="Link1_3" material="white" class="visual"/>
 
           <geom mesh="Link1_collision_0" rgba="0.1804557364461803 0.4977562063204617 0.27865251824914916 1"
@@ -124,7 +126,7 @@
 
             <geom mesh="Link2_0" material="blue" class="visual"/>
             <geom mesh="Link2_1" material="white" class="visual"/>
-            <geom mesh="Link2_2" material="dark" class="visual"/>
+            <geom mesh="Link2_2" material="grey" class="visual"/>
 
             <geom mesh="Link2_collision_0" rgba="0.3446492521858331 0.358843848055024 0.8001897148581045 1"
                   class="collision"/>
@@ -139,8 +141,7 @@
               <joint name="joint3" pos="0 0 0" axis="0 0 1" range="-2.7925 2.7925" limited="true" damping="0.1"/>
               <geom mesh="Link3_0" material="blue" class="visual"/>
               <geom mesh="Link3_1" material="white" class="visual"/>
-              <geom mesh="Link3_2" material="dark" class="visual"/>
-              <geom mesh="Link3_3" material="dark" class="visual"/>
+              <geom mesh="Link3_2" material="grey" class="visual"/>
               <geom mesh="Link3_collision_0" rgba="0.7910065973710727 0.38818142517543286 0.4976056465043288 1"
                     class="collision"/>
               <geom mesh="Link3_collision_1" rgba="0.8294676846859336 0.5468496202918256 0.2217689693803867 1"
@@ -154,7 +155,7 @@
                        damping="0.1"/>
 
                 <geom mesh="Link4_0" material="blue" class="visual"/>
-                <geom mesh="Link4_1" material="dark" class="visual"/>
+                <geom mesh="Link4_1" material="grey" class="visual"/>
                 <geom mesh="Link4_2" material="white" class="visual"/>
                 <geom mesh="Link4_collision_0" rgba="0.27388528670639867 0.17903968527247316 0.321178761713918 1"
                       class="collision"/>
@@ -170,9 +171,11 @@
                   <joint name="joint5" pos="0 0 0" axis="0 0 1" range="-6.28318 6.28318" limited="true"
                          damping="0.1"/>
 
-                  <geom mesh="Link5_0" material="blue" class="visual"/>
-                  <geom mesh="Link5_1" material="white" class="visual"/>
-                  <geom mesh="Link5_2" material="dark" class="visual"/>
+                  <geom mesh="Link5_0" material="green" class="visual"/>
+                  <geom mesh="Link5_1" material="black" class="visual"/>
+                  <geom mesh="Link5_2" material="blue" class="visual"/>
+                  <geom mesh="Link5_3" material="white" class="visual"/>
+                  <geom mesh="Link5_4" material="grey" class="visual"/>
                   <geom mesh="Link5_collision_0" rgba="0.5418304908406412 0.062315935965835845 0.009540267277493353 1"
                         class="collision"/>
                   <geom mesh="Link5_collision_1" rgba="0.30832773754205367 0.16053842214196934 0.6551240925252425 1"
@@ -187,7 +190,7 @@
                     <joint name="joint6" pos="0 0 0" axis="0 0 1" range="-6.28 6.28" limited="true"
                            damping="0.1"/>
 
-                    <geom material="dark" mesh="Link6" class="visual"/>
+                    <geom material="grey" mesh="Link6" class="visual"/>
                     <geom mesh="Link6_collision_0" rgba="0.4130270896806243 0.39742502430772186 0.36812834064533284 1"
                           class="collision"/>
                     <geom mesh="Link6_collision_1" rgba="0.2912507679676942 0.3208169689024756 0.8842280414045944 1"

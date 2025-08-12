@@ -1,0 +1,283 @@
+<mujoco model="ChangingTek_AG2F90-C">
+
+  <default>
+    <default class="visual">
+      <geom group="1" type="mesh" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision">
+      <geom material="collision_material" condim="3" contype="0" conaffinity="1" priority="1" group="0"
+            solref="0.005 1" friction="1 0.01 0.01"/>
+      <equality solimp="0.99 0.999 1e-05" solref="0.005 1"/>
+    </default>
+  </default>
+
+  <compiler angle="radian"/>
+
+  <worldbody>
+    <body name="gripper_base">
+      <site name="ft_frame" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 1" type="sphere" class="visual"/>
+      <geom type="mesh" mesh="gripper_base_0"
+            material="white" class="visual"/>
+      <geom type="mesh" mesh="gripper_base_1"
+            material="silver" class="visual"/>
+      <geom type="mesh" mesh="gripper_base_2"
+            material="black_metal" class="visual"/>
+      <geom type="mesh" class="collision"
+            mesh="gripper_base_collision_0"/>
+      <geom type="mesh" class="collision"
+            mesh="gripper_base_collision_1"/>
+      <geom type="mesh" class="collision"
+            mesh="gripper_base_collision_2"/>
+
+      <body name="eef" pos="0 0 0.19">
+        <site name="grip_site" size="0.01 0.01 0.01" rgba="1 0 0 0.5" type="sphere" class="visual"/>
+        <site name="ee_x" pos="0.1 0 0" size="0.005 .1" quat="0.707105  0 0.707108 0 " rgba="1 0 0 0" type="cylinder"
+              class="visual"/>
+        <site name="ee_y" pos="0 0.1 0" size="0.005 .1" quat="0.707105 0.707108 0 0" rgba="0 1 0 0" type="cylinder"
+              class="visual"/>
+        <site name="ee_z" pos="0 0 0.1" size="0.005 .1" quat="1 0 0 0" rgba="0 0 1 0" type="cylinder" class="visual"/>
+        <!-- This site was added for visualization. -->
+        <body name="line_front" pos="0 0 0">
+          <site name="grip_site_cylinder" pos="0 0 0" size="0.005 5" rgba="0 1 0 0.3"
+                type="cylinder" class="visual"/>
+        </body>
+      </body>
+
+      <body name="left_1_link" pos="0 -0.030141 0.090147" quat="0.7071054825112363 0.7071080798594735 0.0 0.0">
+        <inertial pos="-1.28088127539536E-18 0.0252734640095115 -0.00214040614650292" quat="1.0 0.0 0.0 0.0"
+                  mass="0.0129014357535444"
+                  diaginertia="3.35976482443235e-06 1.65185846940368e-07 3.25394125032869e-06"/>
+        <joint name="gripper_joint" type="hinge" range="0 1" axis="1 0 0"/>
+        <geom type="mesh" mesh="link_1"
+              material="black_metal" class="visual"/>
+        <geom type="mesh" class="collision"
+              mesh="link_1_collision_0"/>
+        <geom type="mesh" class="collision"
+              mesh="link_1_collision_1"/>
+        <geom type="mesh" class="collision"
+              mesh="link_1_collision_2"/>
+        <body name="left_in_link" pos="0 0.023914 -0.0020253" quat="1.0 0.0 0.0 0.0">
+          <inertial pos="-1.75682286192042E-11 -0.0108820145632286 -0.00405362317350415" quat="1.0 0.0 0.0 0.0"
+                    mass="0.0134557296415635"
+                    diaginertia="1.43307384392376e-06 3.88838933230828e-07 1.33747540965672e-06"/>
+          <joint name="left_in_Joint" type="hinge" range="0 1" axis="-1 0 0"/>
+          <geom type="mesh" mesh="in_link"
+                material="black_metal" class="visual"/>
+          <geom type="mesh" class="collision"
+                mesh="in_link_collision_0"/>
+          <geom type="mesh" class="collision"
+                mesh="in_link_collision_1"/>
+          <geom type="mesh" class="collision"
+                mesh="in_link_collision_2"/>
+        </body>
+        <body name="left_up_link" pos="0 0.054804 -0.0046413" quat="1.0 0.0 0.0 0.0">
+          <inertial pos="8.69802213948566E-11 0.0124078988097444 -0.0072525614743534" quat="1.0 0.0 0.0 0.0"
+                    mass="0.014692561982481"
+                    diaginertia="2.35283034039115e-06 5.8942945477579e-07 2.07228020361883e-06"/>
+          <joint name="left_up_Joint" type="hinge" range="0 1" axis="-1 0 0"/>
+          <geom type="mesh" mesh="up_link_0"
+                material="silver" class="visual"/>
+          <geom type="mesh" mesh="up_link_1"
+                material="black_metal" class="visual"/>
+          <geom type="mesh" class="collision"
+                mesh="up_link_collision_0"/>
+          <geom type="mesh" class="collision"
+                mesh="up_link_collision_1"/>
+          <geom type="mesh" class="collision"
+                mesh="up_link_collision_2"/>
+          <body name="left_Pad_link" pos="0 0.04125 -0.02425" quat="1.0 0.0 0.0 0.0">
+            <inertial pos="-3.83777509579761E-08 0.00303135276101582 0.0028336970357949" quat="1.0 0.0 0.0 0.0"
+                      mass="0.0183171479595721"
+                      diaginertia="2.35683098270332e-06 9.08136064346118e-07 3.18448591439082e-06"/>
+            <geom type="mesh" mesh="pad_link"
+                  material="black_rubber" class="visual"/>
+            <geom type="mesh" class="collision"
+                  mesh="pad_link_collision_0"/>
+            <geom type="mesh" class="collision"
+                  mesh="pad_link_collision_1"/>
+            <geom type="mesh" class="collision"
+                  mesh="pad_link_collision_2"/>
+          </body>
+        </body>
+      </body>
+      <body name="left_2_link" pos="0 -0.016 0.107" quat="0.7071054825112363 0.7071080798594735 0.0 0.0">
+        <inertial pos="5.08224485200288E-06 0.0327050710040551 -0.00276963392800038" quat="1.0 0.0 0.0 0.0"
+                  mass="0.0188752657753052"
+                  diaginertia="3.4145090175335e-06 2.86837057727488e-07 3.39111483394506e-06"/>
+        <joint name="left_2_Joint" type="hinge" range="0 1" axis="1 0 0"/>
+        <geom type="mesh" mesh="link_2_0"
+              material="silver" class="visual"/>
+        <geom type="mesh" mesh="link_2_1"
+              material="black_metal" class="visual"/>
+        <geom type="mesh" class="collision"
+              mesh="link_2_collision_0"/>
+        <geom type="mesh" class="collision"
+              mesh="link_2_collision_1"/>
+        <geom type="mesh" class="collision"
+              mesh="link_2_collision_2"/>
+      </body>
+      <body name="right_2_link" pos="0 0.016 0.107"
+            quat="-2.5973434669646147e-06 -2.597353007557415e-06 0.7071080798547033 0.707105482506466">
+        <inertial pos="1.94651792710713E-17 0.0327174794493866 -0.00277053098700989" quat="1.0 0.0 0.0 0.0"
+                  mass="0.0188856364479881"
+                  diaginertia="3.41458781978465e-06 2.86883124998043e-07 3.39114800103702e-06"/>
+        <joint name="right_2_Joint" type="hinge" range="0 1" axis="1 0 0"/>
+        <geom type="mesh" mesh="link_2_0"
+              material="silver" class="visual"/>
+        <geom type="mesh" mesh="link_2_1"
+              material="black_metal" class="visual"/>
+        <geom type="mesh" class="collision"
+              mesh="link_2_collision_0"/>
+        <geom type="mesh" class="collision"
+              mesh="link_2_collision_1"/>
+        <geom type="mesh" class="collision"
+              mesh="link_2_collision_2"/>
+      </body>
+      <body name="right_1_link" pos="0 0.030141 0.090147"
+            quat="-2.5973434669646147e-06 -2.597353007557415e-06 0.7071080798547033 0.707105482506466">
+        <inertial pos="-5.25233292439781E-19 0.0252734640095115 -0.00214040614650291" quat="1.0 0.0 0.0 0.0"
+                  mass="0.0129014357535444"
+                  diaginertia="3.35976482443235e-06 1.65185846940368e-07 3.25394125032869e-06"/>
+        <joint name="right_1_Joint" type="hinge" range="0 1" axis="1 0 0"/>
+        <geom type="mesh" mesh="link_1"
+              material="black_metal" class="visual"/>
+        <geom type="mesh" class="collision"
+              mesh="link_1_collision_0"/>
+        <geom type="mesh" class="collision"
+              mesh="link_1_collision_1"/>
+        <geom type="mesh" class="collision"
+              mesh="link_1_collision_2"/>
+        <body name="right_in_link" pos="0 0.023914 -0.0020253" quat="1.0 0.0 0.0 0.0">
+          <inertial pos="-1.7568261982498E-11 -0.0108820145632292 -0.00405362317350229" quat="1.0 0.0 0.0 0.0"
+                    mass="0.0134557296415635"
+                    diaginertia="1.43307384392376e-06 3.88838933230828e-07 1.33747540965672e-06"/>
+          <joint name="right_in_Joint" type="hinge" range="0 1" axis="-1 0 0"/>
+          <geom type="mesh" mesh="in_link"
+                material="black_metal" class="visual"/>
+          <geom type="mesh" class="collision"
+                mesh="in_link_collision_0"/>
+          <geom type="mesh" class="collision"
+                mesh="in_link_collision_1"/>
+          <geom type="mesh" class="collision"
+                mesh="in_link_collision_2"/>
+        </body>
+        <body name="right_up_link" pos="0 0.054804 -0.0046413" quat="1.0 0.0 0.0 0.0">
+          <inertial pos="8.69814518862609E-11 0.0124078988097266 -0.00725256147435587" quat="1.0 0.0 0.0 0.0"
+                    mass="0.014692561982481"
+                    diaginertia="2.35283034039115e-06 5.89429454773258e-07 2.07228020362137e-06"/>
+          <joint name="right_up_Joint" type="hinge" range="0 1" axis="-1 0 0"/>
+          <geom type="mesh" mesh="up_link_0"
+                material="silver" class="visual"/>
+          <geom type="mesh" mesh="up_link_1"
+                material="black_metal" class="visual"/>
+          <geom type="mesh" class="collision"
+                mesh="up_link_collision_0"/>
+          <geom type="mesh" class="collision"
+                mesh="up_link_collision_1"/>
+          <geom type="mesh" class="collision"
+                mesh="up_link_collision_2"/>
+          <body name="right_Pad_link" pos="0 0.04125 -0.02425" quat="1.0 0.0 0.0 0.0">
+            <inertial pos="-3.83777500494227E-08 0.0030313527610159 0.00283369703564792" quat="1.0 0.0 0.0 0.0"
+                      mass="0.0366342959191441"
+                      diaginertia="4.71366196540664e-06 1.81627212869223e-06 6.36897182878164e-06"/>
+            <geom type="mesh" mesh="pad_link"
+                  material="black_rubber" class="visual"/>
+            <geom type="mesh" class="collision"
+                  mesh="pad_link_collision_0"/>
+            <geom type="mesh" class="collision"
+                  mesh="pad_link_collision_1"/>
+            <geom type="mesh" class="collision"
+                  mesh="pad_link_collision_2"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <asset>
+    <material name="black_metal" specular="0.5" shininess="0.49" rgba="0.010000 0.010000 0.010000 1.000000"/>
+    <material name="black_rubber" specular="0.5" shininess="0.09" rgba="0.050000 0.050000 0.050000 1.000000"/>
+    <material name="silver" specular="0.5" shininess="0.49" rgba="0.800000 0.800000 0.800000 1.000000"/>
+    <material name="white" specular="0.5" shininess="0.25" rgba="1.000000 1.000000 1.000000 1.000000"/>
+    <material name="collision_material" rgba="1.0 0.28 0.1 0.9"/>
+
+    <!-- Gripper base meshes -->
+    <mesh name="gripper_base_0" file="gripper_base/gripper_base_0.obj"/>
+    <mesh name="gripper_base_1" file="gripper_base/gripper_base_1.obj"/>
+    <mesh name="gripper_base_2" file="gripper_base/gripper_base_2.obj"/>
+    <mesh name="gripper_base_collision_0" file="gripper_base/gripper_base_collision_0.obj"/>
+    <mesh name="gripper_base_collision_1" file="gripper_base/gripper_base_collision_1.obj"/>
+    <mesh name="gripper_base_collision_2" file="gripper_base/gripper_base_collision_2.obj"/>
+
+    <!-- Link 1 meshes -->
+    <mesh name="link_1" file="link_1/link_1.obj"/>
+    <mesh name="link_1_collision_0" file="link_1/link_1_collision_0.obj"/>
+    <mesh name="link_1_collision_1" file="link_1/link_1_collision_1.obj"/>
+    <mesh name="link_1_collision_2" file="link_1/link_1_collision_2.obj"/>
+
+    <!-- Link 2 meshes -->
+    <mesh name="link_2_0" file="link_2/link_2_0.obj"/>
+    <mesh name="link_2_1" file="link_2/link_2_1.obj"/>
+    <mesh name="link_2_collision_0" file="link_2/link_2_collision_0.obj"/>
+    <mesh name="link_2_collision_1" file="link_2/link_2_collision_1.obj"/>
+    <mesh name="link_2_collision_2" file="link_2/link_2_collision_2.obj"/>
+
+    <!-- In link meshes -->
+    <mesh name="in_link" file="in_link/in_link.obj"/>
+    <mesh name="in_link_collision_0" file="in_link/in_link_collision_0.obj"/>
+    <mesh name="in_link_collision_1" file="in_link/in_link_collision_1.obj"/>
+    <mesh name="in_link_collision_2" file="in_link/in_link_collision_2.obj"/>
+
+    <!-- Up link meshes -->
+    <mesh name="up_link_0" file="up_link/up_link_0.obj"/>
+    <mesh name="up_link_1" file="up_link/up_link_1.obj"/>
+    <mesh name="up_link_collision_0" file="up_link/up_link_collision_0.obj"/>
+    <mesh name="up_link_collision_1" file="up_link/up_link_collision_1.obj"/>
+    <mesh name="up_link_collision_2" file="up_link/up_link_collision_2.obj"/>
+
+    <!-- Pad link meshes -->
+    <mesh name="pad_link" file="pad_link/pad_link.obj"/>
+    <mesh name="pad_link_collision_0" file="pad_link/pad_link_collision_0.obj"/>
+    <mesh name="pad_link_collision_1" file="pad_link/pad_link_collision_1.obj"/>
+    <mesh name="pad_link_collision_2" file="pad_link/pad_link_collision_2.obj"/>
+  </asset>
+
+  <actuator>
+    <position name="gripper_joint" ctrllimited="true" kp="20" ctrlrange='0 1.0' joint="gripper_joint"/>
+  </actuator>
+
+  <equality>
+    <joint joint1="gripper_joint" joint2="left_in_Joint" polycoef="0.0 10.0 0 0 0" solimp="0.95 0.99 0.001"
+           solref="0.005 1"/>
+    <joint joint1="gripper_joint" joint2="left_up_Joint" polycoef="0.0 1.0 0 0 0" solimp="0.95 0.99 0.001"
+           solref="0.005 1"/>
+    <joint joint1="gripper_joint" joint2="left_2_Joint" polycoef="0.0 1.0 0 0 0" solimp="0.95 0.99 0.001"
+           solref="0.005 1"/>
+    <joint joint1="gripper_joint" joint2="right_2_Joint" polycoef="0.0 1.0 0 0 0" solimp="0.95 0.99 0.001"
+           solref="0.005 1"/>
+    <joint joint1="gripper_joint" joint2="right_1_Joint" polycoef="0.0 1.0 0 0 0" solimp="0.95 0.99 0.001"
+           solref="0.005 1"/>
+    <joint joint1="gripper_joint" joint2="right_in_Joint" polycoef="0.0 10.0 0 0 0" solimp="0.95 0.99 0.001"
+           solref="0.005 1"/>
+    <joint joint1="gripper_joint" joint2="right_up_Joint" polycoef="0.0 1.0 0 0 0" solimp="0.95 0.99 0.001"
+           solref="0.005 1"/>
+  </equality>
+
+  <contact>
+    <exclude body1="gripper_base" body2="left_1_link"/>
+    <exclude body1="left_1_link" body2="left_in_link"/>
+    <exclude body1="left_1_link" body2="left_up_link"/>
+    <exclude body1="left_up_link" body2="left_Pad_link"/>
+    <exclude body1="gripper_base" body2="left_2_link"/>
+    <exclude body1="gripper_base" body2="right_2_link"/>
+    <exclude body1="gripper_base" body2="right_1_link"/>
+    <exclude body1="right_1_link" body2="right_in_link"/>
+    <exclude body1="right_1_link" body2="right_up_link"/>
+    <exclude body1="right_up_link" body2="right_Pad_link"/>
+  </contact>
+
+  <sensor>
+    <force name="force_ee" site="ft_frame"/>
+    <torque name="torque_ee" site="ft_frame"/>
+  </sensor>
+</mujoco>

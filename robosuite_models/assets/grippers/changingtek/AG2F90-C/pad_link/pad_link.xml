@@ -1,0 +1,25 @@
+<mujoco model="pad_link">
+  <default>
+    <default class="visual">
+      <geom group="2" type="mesh" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision">
+      <geom group="3" type="mesh"/>
+    </default>
+  </default>
+  <asset>
+    <material name="black_rubber" specular="0.5" shininess="0.09" rgba="0.050000 0.050000 0.050000 1.000000"/>
+    <mesh file="pad_link.obj"/>
+    <mesh file="pad_link_collision_0.obj"/>
+    <mesh file="pad_link_collision_1.obj"/>
+    <mesh file="pad_link_collision_2.obj"/>
+  </asset>
+  <worldbody>
+    <body name="pad_link">
+      <geom material="black_rubber" mesh="pad_link" class="visual"/>
+      <geom mesh="pad_link_collision_0" rgba="0.9640972851194175 0.9734911067433988 0.0988959391266081 1" class="collision"/>
+      <geom mesh="pad_link_collision_1" rgba="0.40132652392593415 0.07755756496996102 0.6798104377235289 1" class="collision"/>
+      <geom mesh="pad_link_collision_2" rgba="0.21226098262723614 0.490332829714903 0.15508865699748497 1" class="collision"/>
+    </body>
+  </worldbody>
+</mujoco>

@@ -15,6 +15,12 @@ Usage examples:
 
     # Custom settings with data collection
     python teleop_robosuite.py --device.pos_sensitivity 2.0 --collection.enabled true --collection.directory /path/to/demos
+
+    # ROS2 Joy controller
+    python teleop_robosuite.py --env.environment Lift --device.type ros2_joy
+
+    # ROS2 Joy with custom topic and sensitivity
+    python teleop_robosuite.py --env.environment Lift --device.type ros2_joy --device.joy_topic /custom_joy --device.pos_sensitivity 1.5
 """
 
 import datetime
@@ -192,9 +198,18 @@ def setup_device(device_config, env):
     elif device_config.type == "lerobot_lead":
         from robosuite.devices.lerobot_lead import LeRobotLead
         device = LeRobotLead(env=env, teleoperator=device_config.teleoperator)
+    elif device_config.type == "ros2_joy":
+        from robosuite.devices import ROS2Joy
+        device = ROS2Joy(
+            env=env,
+            pos_sensitivity=device_config.pos_sensitivity,
+            rot_sensitivity=device_config.rot_sensitivity,
+            joy_topic=device_config.joy_topic,
+            mapping_config=device_config.mapping_config,
+        )
     else:
         raise ValueError(
-            f"Invalid device choice: {device_config.type}. Choose 'keyboard', 'dualsense', 'spacemouse', or 'mjgui'.")
+            f"Invalid device choice: {device_config.type}. Choose 'keyboard', 'dualsense', 'spacemouse', 'mjgui', 'lerobot_lead', or 'ros2_joy'.")
 
     return device
 
@@ -229,9 +244,6 @@ def teleop_loop(env, device, env_config, render_config, collection_config, tmp_d
 
         # Initialize device control
         device.start_control()
-
-        for robot in env.robots:
-            robot.print_action_info_dict()
 
         all_prev_gripper_actions = [
             {
