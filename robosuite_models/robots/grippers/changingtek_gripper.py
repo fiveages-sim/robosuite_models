@@ -9,7 +9,7 @@ from robosuite_models import robosuite_model_path_completion
 
 
 @register_gripper
-class ChangingTekAG2F90CGripperBase(GripperModel):
+class AG2F90CBase(GripperModel):
     """
     ChangingTek AG2F90-C gripper with parallel jaw mechanism.
 
@@ -72,7 +72,7 @@ class ChangingTekAG2F90CGripperBase(GripperModel):
 
 
 @register_gripper
-class ChangingTekAG2F90CGripper(ChangingTekAG2F90CGripperBase):
+class AG2F90C(AG2F90CBase):
     """
     1-DoF variant of ChangingTekAG2F90CGripperBase.
     """

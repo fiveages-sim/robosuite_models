@@ -27,7 +27,8 @@ class DobotCR5(ManipulatorModel):
 
     @property
     def default_gripper(self):
-        return {"right": "ChangingTekAG2F90CGripper"}
+        # return {"right": "ChangingTekAG2F90CGripper"}
+        return {"right": "AG2F90C"}
 
     @property
     def default_controller_config(self):

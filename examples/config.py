@@ -21,6 +21,7 @@ class EnvironmentConfig:
     switch_on_grasp: bool = False
     toggle_camera_on_grasp: bool = False
     translucent_robot: bool = False
+    gripper_types: Optional[Union[str, List[str]]] = None
 
 
 @dataclass

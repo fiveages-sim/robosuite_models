@@ -8,6 +8,7 @@ env:
   arm: "right"                 # Which arm to control for bimanual robots
   switch_on_grasp: false       # Switch active arm when gripper is used
   toggle_camera_on_grasp: false # Toggle camera view when gripper is used
+  gripper_types: null          # Gripper types - can be string, list, or null for default
 
 device:
   type: "spacemouse"           # Input device: spacemouse, keyboard, dualsense, mjgui
@@ -20,3 +21,12 @@ control:
 
 render:
   max_fr: 20                   # Maximum frame rate (20 fps = real time) 
+  renderer: "mjviewer"         # Renderer type
+  camera: "agentview"          # Camera view
+  has_renderer: true           # Enable rendering
+  has_offscreen_renderer: false # Disable offscreen rendering
+  use_camera_obs: false        # Disable camera observations
+
+collection:
+  enabled: false               # Disable data collection by default
+  directory: null              # Data collection directory (null for default) 

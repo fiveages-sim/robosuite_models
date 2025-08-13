@@ -3,6 +3,8 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/3rd_libraries" />
+      <excludeFolder url="file://$MODULE_DIR$/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/robosuite_models.egg-info" />
     </content>
     <orderEntry type="jdk" jdkName="robocasa" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

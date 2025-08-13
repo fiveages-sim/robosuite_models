@@ -21,6 +21,13 @@ Usage examples:
 
     # ROS2 Joy with custom topic and sensitivity
     python teleop_robosuite.py --env.environment Lift --device.type ros2_joy --device.joy_topic /custom_joy --device.pos_sensitivity 1.5
+
+    # ARX robots with custom gripper types
+    python teleop_robosuite.py --env.robots Arx5 --env.gripper_types UMIGripper --device.type ros2_joy
+    python teleop_robosuite.py --env.robots ArxR5Dual --env.environment TwoArmLift --env.config bimanual --env.gripper_types ArxGripper,UMIGripper --device.type ros2_joy
+
+    # Using configuration files
+    python teleop_robosuite.py --config arx_gripper_configs.yaml:arx5_umi
 """
 
 import datetime
@@ -142,6 +149,10 @@ def setup_environment(env_config, control_config, render_config, collection_conf
     
     if env_config.translucent_robot:
         config["translucent_robot"] = True
+
+    # Add gripper types configuration if specified
+    if env_config.gripper_types is not None:
+        config["gripper_types"] = env_config.gripper_types
 
     # Create environment
     env = suite.make(

@@ -252,6 +252,10 @@ python examples/teleop_robosuite.py --env.robots DobotCR5 --env.environment Micr
 python examples/teleop_robosuite.py --env.robots DobotCR5 --env.environment Microwave --env.mirror_actions True --device.type ros2_joy
 ```
 
+```bash
+python examples/teleop_robosuite.py --env.robots DobotCR5 --env.environment PickPlace --device.type ros2_joy
+```
+
 </details>
 
 <details>
