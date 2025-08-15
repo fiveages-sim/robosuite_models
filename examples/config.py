@@ -7,7 +7,21 @@ for consistent parameter management using draccus.
 from dataclasses import dataclass, field
 from typing import List, Optional, Union
 
-from lerobot.teleoperators import TeleoperatorConfig
+# Try to import TeleoperatorConfig from lerobot, fallback to local implementation
+try:
+    from lerobot.teleoperators import TeleoperatorConfig
+except ImportError:
+    @dataclass
+    class TeleoperatorConfig:
+        """Local fallback TeleoperatorConfig when lerobot is not available."""
+        type: str = "default"
+        port: Optional[str] = None
+        id: Optional[str] = None
+        # Additional fields that might be needed for lerobot_lead device
+        host: Optional[str] = None
+        timeout: Optional[float] = None
+        retry_attempts: Optional[int] = None
+        # Add other fields as needed for lerobot_lead device
 
 
 @dataclass
