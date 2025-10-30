@@ -1,0 +1,110 @@
+<mujoco model="arx_gripper">
+	<asset>
+
+		<material name="black" specular="0.5" shininess="0.25" rgba="0.010000 0.010000 0.010000 1.000000"/>
+		<material name="grey" specular="0.5" shininess="0.25" rgba="0.64706 0.64706 0.64706 1.000000"/>
+
+		<!-- gripper link -->
+		<mesh name="gripper_link" file="gripper_link/gripper_link.obj"/>
+		<mesh name="gripper_link_collision_0" file="gripper_link/gripper_link_collision_0.obj"/>
+		<mesh name="gripper_link_collision_1" file="gripper_link/gripper_link_collision_1.obj"/>
+		<mesh name="gripper_link_collision_2" file="gripper_link/gripper_link_collision_2.obj"/>
+
+		<!-- finger 1 -->
+		<mesh name="finger" file="finger/finger.obj"/>
+		<mesh name="finger_collision_1" file="finger/finger_collision_1.obj"/>
+		<mesh name="finger_collision_2" file="finger/finger_collision_2.obj"/>
+
+		<!-- finger 2 -->
+		<mesh name="finger_1" file="finger/finger.obj" scale="1 -1 -1"/>
+		<mesh name="finger_1_collision_0" file="finger/finger_collision_0.obj" scale="1 -1 -1"/>
+		<mesh name="finger_1_collision_1" file="finger/finger_collision_1.obj" scale="1 -1 -1"/>
+		<mesh name="finger_1_collision_2" file="finger/finger_collision_2.obj" scale="1 -1 -1"/>
+
+	</asset>
+	<default>
+		<default class="visual">
+			<geom group="1" type="mesh" contype="0" conaffinity="0"/>
+		</default>
+		<default class="collision">
+			<geom group="0" type="mesh"/>
+		</default>
+	</default>
+	<actuator>
+		<position ctrllimited="true" ctrlrange="0 0.044" joint="gripper_joint" kp="1000" name="gripper_finger_joint1"
+		          forcelimited="true" forcerange="-20 20"/>
+	</actuator>
+	<worldbody>
+		<body name="right_gripper" quat="0.7071 0.7071 0 0">
+			<site name="ft_frame" size="0.01 0.01 0.01" rgba="1 0 0 1" type="sphere" class="visual"/>
+			<body name="gripper_base" pos="0.07 0 0">
+				<inertial pos="-0.0311072323899603 1.17979991887118E-08 7.93394685505433E-08" mass="0.604"
+				          diaginertia="0.000175881544189539 9.86379407701341E-05 0.000165121280580029"/>
+				<geom material="black" mesh="gripper_link" class="visual"/>
+				<geom mesh="gripper_link_collision_0"
+				      rgba="0.8862490586574084 0.7435093360566776 0.7607178856117596 1" class="collision"/>
+				<geom mesh="gripper_link_collision_1"
+				      rgba="0.6260033284114311 0.9914132560713189 0.9925368790645307 1" class="collision"/>
+				<geom mesh="gripper_link_collision_2"
+				      rgba="0.3131910709239759 0.8143386607477612 0.5206038597699393 1" class="collision"/>
+
+				<!-- This site was added for visualization. -->
+				<body name="eef" pos="0.07 0 0">
+					<site name="grip_site" size="0.01 0.01 0.01" rgba="1 0 0 0.5" type="sphere" class="visual"/>
+					<site name="ee_x" pos="0.1 0 0" size="0.005 .1" quat="0.707105  0 0.707108 0 " rgba="1 0 0 0" type="cylinder"
+					      class="visual"/>
+					<site name="ee_y" pos="0 0.1 0" size="0.005 .1" quat="0.707105 0.707108 0 0" rgba="0 1 0 0" type="cylinder"
+					      class="visual"/>
+					<site name="ee_z" pos="0 0 0.1" size="0.005 .1" quat="1 0 0 0" rgba="0 0 1 0" type="cylinder" class="visual"/>
+					<!-- This site was added for visualization. -->
+					<body name="line_front">
+						<site name="grip_site_cylinder" size="0.005 5" rgba="0 1 0 0.3" quat="0 0.7071 0 0.7071"
+						      type="cylinder" class="visual"/>
+					</body>
+				</body>
+				<body name="finger1" pos="0.03689 0.013453 0.00012059">
+					<inertial pos="-0.0195896 -0.0151137 0.00542254" quat="0.0737604 0.710766 -0.00936884 0.699488"
+					          mass="0.027" diaginertia="6.49151e-06 5.75205e-06 2.35775e-06"/>
+					<joint name="gripper_joint" axis="0 1 0" type="slide" range="0 0.05"
+					       damping="100" armature="1.0" frictionloss="1.0"/>
+					<geom material="grey" mesh="finger" class="visual"/>
+					<geom mesh="finger_collision_1" rgba="0.6319617394132765 0.6094764851034856 0.8071638933016702 1"
+					      class="collision"/>
+					<geom mesh="finger_collision_2" rgba="0.9335377064754602 0.2992266374488698 0.7218747227400863 1"
+					      class="collision"/>
+					<geom size="0.008 0.0018 0.006" pos="0.032 -0.012 0" type="box" class="collision" solref="0.01 0.5"
+					      friction="2 0.05 0.0001" conaffinity="1" contype="1" name="finger1_pad_collision"/>
+				</body>
+				<body name="finger2" pos="0.03689 -0.013453 -0.00012059">
+					<inertial pos="-0.0195896 0.0151137 -0.00542254" quat="-0.00936875 0.699488 0.0737603 0.710766"
+					          mass="0.027" diaginertia="6.49151e-06 5.75205e-06 2.35775e-06"/>
+					<joint name="gripper_joint2" axis="0 -1 0" type="slide" range="0 0.05"
+					       damping="100" armature="1.0" frictionloss="1.0"/>
+					<geom material="grey" mesh="finger_1" class="visual"/>
+					<geom mesh="finger_1_collision_1" rgba="0.6319617394132765 0.6094764851034856 0.8071638933016702 1"
+					      class="collision"/>
+					<geom mesh="finger_1_collision_2" rgba="0.9335377064754602 0.2992266374488698 0.7218747227400863 1"
+					      class="collision"/>
+					<geom size="0.008 0.0018 0.006" pos="0.032 0.012 0" type="box" class="collision" solref="0.01 0.5"
+					      friction="2 0.05 0.0001" conaffinity="1" contype="1" name="finger2_pad_collision"/>
+				</body>
+			</body>
+		</body>
+	</worldbody>
+
+	<contact>
+		<exclude body1="gripper_base" body2="finger1"/>
+		<exclude body1="gripper_base" body2="finger2"/>
+	</contact>
+
+
+	<equality>
+		<joint joint1="gripper_joint" joint2="gripper_joint2" polycoef="0 1 0 0 0"
+		       solimp="0.95 0.99 0.001 " solref="0.001 1"/>
+	</equality>
+
+	<sensor>
+		<force name="force_ee" site="ft_frame"/>
+		<torque name="torque_ee" site="ft_frame"/>
+	</sensor>
+</mujoco>
